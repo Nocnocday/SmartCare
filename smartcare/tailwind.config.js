@@ -1,10 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+    content: [
+        "./index.html",
+        "./src/**/*.{js,ts,jsx,tsx}",
+      ],
     theme: {
         extend: {
             colors: {
                 main: '#6172F3',
+                sidebar: '#99a799',
+                sidebara: '#d3e4cd',
+                primaryColor: '#000',
+                secondColor:"#fff"
             },
             backgroundColor: {
                 overlay: 'rgba(0,0,0,0.7)',
