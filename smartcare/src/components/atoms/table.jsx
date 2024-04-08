@@ -1,11 +1,28 @@
+import { useEffect, useRef } from "react";
 import Pagination from "./pagination";
 
 Table.defaultProps = {};
 function Table({ colummns, datas, columnAction }) {
+  const tableRef = useRef();
+  useEffect(() => {
+    const headerTag = document.querySelector(".header");
+    const pagiDiv = document.querySelector(".pagination");
+    const wHeight = window.innerHeight;
+    const py = 40; // padding section-right
+    const heightTable =
+      wHeight - py - headerTag.offsetHeight - pagiDiv.offsetHeight - 15;
+    tableRef.current.style.height = heightTable + "px";
+  });
   return (
-    <div className="">
-      <div className="overflow-auto rounded-lg relative  rounded-lg shadow bg-[#fafafa] h-[500px] mb-[10px] custom-scrollbar">
-        <table className="border-collapse table-auto whitespace-no-wrap table-striped absolute" style={{width:"max-content"}}>
+    <>
+      <div
+        ref={tableRef}
+        className="overflow-auto rounded-lg relative rounded-lg shadow bg-[#fafafa] custom-scrollbar"
+      >
+        <table
+          className="border-collapse table-auto whitespace-no-wrap table-striped absolute"
+          style={{ width: "max-content" }}
+        >
           <thead>
             <tr className="center">
               <th className="py-2 px-3 sticky top-0 bg-[#fff]" align="center">
@@ -44,7 +61,11 @@ function Table({ colummns, datas, columnAction }) {
                     listTd.push(
                       <td className="py-2 px-3" align={colummns[i]?.align}>
                         {colummns[i].type == "image" ? (
-                          <img src={data[colummns[i].value]} alt="" className="w-[60px] h-[60px]" />
+                          <img
+                            src={data[colummns[i].value]}
+                            alt=""
+                            className="w-[60px] h-[60px]"
+                          />
                         ) : (
                           data[colummns[i].value]
                         )}
@@ -59,7 +80,7 @@ function Table({ colummns, datas, columnAction }) {
                         const Icon = action.icon;
                         return (
                           <Icon
-                            className={action.classIc}
+                            className={`mx-[5px] ${action.classIc}`}
                             onClick={action.handleClick}
                           />
                         );
@@ -76,8 +97,10 @@ function Table({ colummns, datas, columnAction }) {
           </tbody>
         </table>
       </div>
-      <Pagination totalPages={9} />
-    </div>
+      <div className="pt-[10px] pagination">
+        <Pagination totalPages={9} />
+      </div>
+    </>
   );
 }
 
