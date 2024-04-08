@@ -19,6 +19,7 @@ function InfomationAccount() {
         {data?.length > 0 &&
           data.map((item, index) => (
             <InputRead
+              key={index}
               textLabel={item.field}
               classLabel={"w-[15%]"}
               value={item.value}

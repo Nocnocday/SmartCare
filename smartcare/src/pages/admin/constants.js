@@ -9,7 +9,7 @@ export const colummns = [
     {
       name: "Họ và tên",
       value: "name",
-      width: "300px",
+      width: "200px",
       action: false,
       align: "left",
     },
@@ -23,7 +23,7 @@ export const colummns = [
     {
       name: "Hình ảnh",
       value: "img",
-      width: "300px",
+      width: "200px",
       action: false,
       align: "center",
       type:'image'
@@ -31,7 +31,7 @@ export const colummns = [
     {
       name: "Địa chỉ",
       value:'address',
-      width: "300px",
+      width: "250px",
       action: true,
       align: "left",
     },

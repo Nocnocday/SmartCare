@@ -4,18 +4,18 @@ Table.defaultProps = {};
 function Table({ colummns, datas, columnAction }) {
   return (
     <div className="">
-      <div className="rounded-lg relative  rounded-lg shadow bg-[#fafafa] h-[500px] mb-[10px]">
-        <table className="border-collapse table-auto w-full whitespace-no-wrap table-striped relative">
+      <div className="overflow-auto rounded-lg relative  rounded-lg shadow bg-[#fafafa] h-[500px] mb-[10px] custom-scrollbar">
+        <table className="border-collapse table-auto whitespace-no-wrap table-striped absolute" style={{width:"max-content"}}>
           <thead>
             <tr className="center">
-              <th className="py-2 px-3 sticky top-0" align="center">
+              <th className="py-2 px-3 sticky top-0 bg-[#fff]" align="center">
                 STT
               </th>
               {colummns?.length > 0 &&
                 colummns.map((column, index) => (
                   <th
                     key={index}
-                    className="py-2 px-3 sticky top-0"
+                    className="py-2 px-3 sticky top-0  bg-[#fff]"
                     width={column.width}
                     align="center"
                   >
