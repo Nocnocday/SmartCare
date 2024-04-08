@@ -1,10 +1,6 @@
-import { memo, Fragment, useState } from "react";
-import { adminSidebar } from "../../utils/contants";
-import { NavLink } from "react-router-dom";
-import clsx from "clsx";
-import icons from "../../utils/icons";
-import { common, pathAdmin } from "../../utils/path";
+import { memo, useState } from "react";
 import withBaseComponent from "../../hocs/withBaseComponent";
+import icons from "../../utils/icons";
 // import { logout } from "../../store/user/userSlice";
 import { useSelector } from "react-redux";
 // import avatarDefault from "../../assets/img/avatarDefault.jpg";
@@ -28,7 +24,7 @@ const AdminSidebar = ({ dispatch, navigate }) => {
 
   return (
     <div className="bg-[#408A7E] text-white h-full py-4 ">
-      <div
+      {/* <div
         onClick={() =>
           navigate(`/${pathAdmin.ADMIN}/${common.PROFILE}/${current.id}`, {
             state: {
@@ -121,7 +117,7 @@ const AdminSidebar = ({ dispatch, navigate }) => {
           <TbDoorExit size={20} />
         </span>
         <span>Thoát tài khoản</span>
-      </div>
+      </div> */}
     </div>
   );
 };

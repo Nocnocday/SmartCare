@@ -3,6 +3,7 @@ export const pathAdmin = {
     ADMIN: "admin",
     STATISTICS:"/admin/thong-ke",
     CREATE_ACCOUNT: "/admin/tao-tai-khoan",
+    INFO_ACCOUNT: "/admin/thong-tin-tai-khoan",
     MANAGE_STUDENT: "/admin/quan-ly-sinh-vien",
     MANAGE_TEACHER: "/admin/quan-ly-giao-vien",
     STUDENTDETAIL: "studentdetail",

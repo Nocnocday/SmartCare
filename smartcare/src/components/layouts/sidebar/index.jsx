@@ -1,13 +1,10 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { GoHomeFill } from "react-icons/go";
-import { BiSolidMessageSquareEdit } from "react-icons/bi";
-import { HiUserGroup } from "react-icons/hi2";
 import { IoIosLogOut } from "react-icons/io";
+import { NavLink } from "react-router-dom";
 import { categoriesAdmin } from "./constants";
 function Sidebar() {
   return (
-    <div className="bg-sidebar h-screen p-5 relative">
+    <div className="bg-sidebar h-[calc(100vh-10px)] p-5 fixed w-[280px] rounded-md">
       <div className="flex justify-between items-center">
         <div className="avatar">
           <img

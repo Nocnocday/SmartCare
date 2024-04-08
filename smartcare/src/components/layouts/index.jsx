@@ -5,14 +5,14 @@ import Header from "./header";
 function Layout({children}) {
   return (
     <div className="flex h-full">
-      <div className="section-left basis-[280px]">
+      <div className="section-left basis-[280px] relative">
         <Sidebar />
       </div>
       <div className="section-right flex-1 p-[20px]">
         <div className="header">
         <Header />
         </div>
-        <div className="content bg-[#fafafa] h-[530px] mt-[10px] rounded-lg shadow">
+        <div className="content mt-[10px]">
             {children}
         </div>
       </div>

@@ -11,7 +11,7 @@ export const colummns = [
       value: "name",
       width: "300px",
       action: false,
-      align: "right",
+      align: "left",
     },
     {
       name: "Lớp",
@@ -26,13 +26,14 @@ export const colummns = [
       width: "300px",
       action: false,
       align: "center",
+      type:'image'
     },
     {
       name: "Địa chỉ",
       value:'address',
       width: "300px",
       action: true,
-      align: "center",
+      align: "left",
     },
     {
       name: "Ngày sinh",
@@ -53,6 +54,6 @@ export const colummns = [
       value:'email',
       width: "150px",
       action: true,
-      align: "center",
+      align: "left",
     },
   ];
