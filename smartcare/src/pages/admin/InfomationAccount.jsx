@@ -7,7 +7,7 @@ function InfomationAccount() {
     { field: "Tên", value: "Nguyễn Như Ngọc" },
     { field: "Số điện thoại", value: "0987665432" },
     { field: "Vai trò", value: "Admin" },
-    { field: "Địa chỉ", value: "Hà Nội" },
+    { field: "Địa chỉ", value: "Đà Nẵng" },
     { field: "Ngày sinh", value: "01-01-2001" },
     { field: "Email", value: "ngoccute@gmail.com" },
     { field: "Giới tính", value: "Nữ" },

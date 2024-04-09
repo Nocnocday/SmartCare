@@ -1,11 +1,11 @@
 export const pathAdmin = {
     // Admin
     ADMIN: "admin",
-    STATISTICS:"/admin/thong-ke",
-    CREATE_ACCOUNT: "/admin/tao-tai-khoan",
-    INFO_ACCOUNT: "/admin/thong-tin-tai-khoan",
-    MANAGE_STUDENT: "/admin/quan-ly-sinh-vien",
-    MANAGE_TEACHER: "/admin/quan-ly-giao-vien",
+    STATISTICS:"/admin/dashboard",
+    CREATE_ACCOUNT: "/admin/create-account",
+    INFO_ACCOUNT: "/admin/information-account",
+    MANAGE_STUDENT: "/admin/manage-student",
+    MANAGE_TEACHER: "/admin/manage-teacher",
     STUDENTDETAIL: "studentdetail",
     STUDENTDETAIL_UID: "studentdetail/:uid",
 };

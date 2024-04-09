@@ -54,9 +54,9 @@ function Header() {
         <>
           <div className="flex">
             <img src="https://placehold.co/100x100" alt="avatar" />
-            <div className="ml-[16px] mt-[10px]">
+            <div className="ml-[17px] mt-[-3px]">
               <p>Ngocdangyew</p>
-              <p>Số điện thoại: 0987654321</p>
+              <p class="mt-[14px]">Số điện thoại: 0987654321</p>
             </div>
           </div>
           <div className="flex justify-between items-end">
