@@ -7,7 +7,6 @@ import Layout from "../../components/layouts";
 import { colummns } from "./constants";
 
 function Management({ navigate, location }) {
-  
   const datas = [
     {id:'123',name:"Nguyễn Văn A",class:"Mầm",img:'https://placehold.co/100x100',address:'Đà Nẵng',date:'01-01-2022',phone:'0987654321',email:"ABC@gmail.com"},
     {id:'123',name:"Nguyễn Văn A",class:"Mầm",img:'https://placehold.co/100x100',address:'Đà Nẵng',date:'01-01-2022',phone:'0987654321',email:"ABC@gmail.com"},

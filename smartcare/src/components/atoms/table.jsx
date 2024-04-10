@@ -98,7 +98,7 @@ function Table({ colummns, datas, columnAction }) {
         </table>
       </div>
       <div className="pt-[10px] pagination">
-        <Pagination totalPages={9} />
+        <Pagination totalPages={1} />
       </div>
     </>
   );

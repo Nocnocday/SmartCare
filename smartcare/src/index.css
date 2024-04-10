@@ -2,11 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
-:root{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+:root {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 html {
@@ -14,24 +13,28 @@ html {
   -webkit-text-size-adjust: 100%; /* 2 */
 }
 
-.custom-scrollbar,html {
-  overflow-y: auto; 
+.custom-scrollbar,
+html {
+  overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #888 transparent; 
+  scrollbar-color: #888 transparent;
 }
 
 /* Thanh cuộn trên Firefox */
-.custom-scrollbar::-webkit-scrollbar,html::-webkit-scrollbar {
+.custom-scrollbar::-webkit-scrollbar,
+html::-webkit-scrollbar {
   width: 10px; /* Kích thước thanh cuộn */
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb,html::-webkit-scrollbar-thumb {
+.custom-scrollbar::-webkit-scrollbar-thumb,
+html::-webkit-scrollbar-thumb {
   background-color: #888; /* Màu sắc của thanh cuộn */
   border-radius: 6px; /* Bo tròn viền thanh cuộn */
 }
 
 /* Ẩn thanh cuộn khi không hoạt động */
-.custom-scrollbar::-webkit-scrollbar-thumb:hover,html::-webkit-scrollbar-thumb:hover {
+.custom-scrollbar::-webkit-scrollbar-thumb:hover,
+html::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
 
@@ -39,30 +42,21 @@ body {
   margin: 0;
 }
 
-/**
-   * Render the `main` element consistently in IE.
-   */
-
 main {
   display: block;
 }
-
-/**
-   * Correct the font size and margin on `h1` elements within `section` and
-   * `article` contexts in Chrome, Firefox, and Safari.
-   */
 
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
 }
 
-h2{
-    font-size: 22px;
+h2 {
+  font-size: 22px;
 }
 
-h3{
-    font-size: 18px;
+h3 {
+  font-size: 18px;
 }
 /* Grouping content
      ========================================================================== */
@@ -161,7 +155,7 @@ sup {
 }
 
 p {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 /* Embedded content
@@ -194,7 +188,7 @@ textarea {
   margin: 0; /* 2 */
 }
 
-input{
+input {
   height: 40px;
 }
 

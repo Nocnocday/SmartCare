@@ -54,8 +54,8 @@ function Header() {
         <>
           <div className="flex">
             <img src="https://placehold.co/100x100" alt="avatar" />
-            <div className="ml-[16px] mt-[10px]">
-              <p>Ngocdangyew</p>
+            <div className="ml-[16px]">
+              <p className="mb-[8px]">Ngocdangyew</p>
               <p>Số điện thoại: 0987654321</p>
             </div>
           </div>
