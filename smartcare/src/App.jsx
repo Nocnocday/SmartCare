@@ -7,7 +7,6 @@ function App() {
         <Routes>
           {publicRoutes.map((route, index) => {
             const Page = route.component;
-            console.log(Page);
             return <Route key={index} path={route.path} element={<Page />} />;
           })}
           {privateRoute.map((route, index) => {

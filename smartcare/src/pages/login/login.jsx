@@ -3,7 +3,7 @@ import { Button, Input } from "../../components/atoms";
 
 function Login() {
   return (
-    <div className="flex justify-between items-center min-h-[60vh] w-[50%] h-auto m-auto shadow rounded-lg absolute translate-x-[-50%] translate-y-[-50%] top-[50%] left-[50%]">
+    <div className="flex justify-between items-center min-h-[60vh] w-[50%] h-auto m-auto shadow-xl rounded-lg absolute translate-x-[-50%] translate-y-[-50%] top-[50%] left-[50%]">
       <div className="w-[50%] justify-center items-center flex">
         <img
           src="/images/img_login.png"

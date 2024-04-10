@@ -5,14 +5,14 @@ import { pathAdmin } from "../../../utils/path";
 
 function Header() {
   const location = useLocation();
-  const [type, setType] = useState(()=>{
+  const [type, setType] = useState(() => {
     switch (location.pathname) {
       case pathAdmin.MANAGE_STUDENT:
-       return 1
+        return 1;
       case pathAdmin.MANAGE_TEACHER:
-       return 1
+        return 1;
       case pathAdmin.INFO_ACCOUNT:
-       return 3
+        return 3;
       default:
         break;
     }
@@ -54,9 +54,9 @@ function Header() {
         <>
           <div className="flex">
             <img src="https://placehold.co/100x100" alt="avatar" />
-            <div className="ml-[16px]">
-              <p className="mb-[8px]">Ngocdangyew</p>
-              <p>Số điện thoại: 0987654321</p>
+            <div className="ml-[17px] mt-[-3px]">
+              <p>Ngocdangyew</p>
+              <p class="mt-[14px]">Số điện thoại: 0987654321</p>
             </div>
           </div>
           <div className="flex justify-between items-end">

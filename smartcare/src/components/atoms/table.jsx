@@ -53,11 +53,11 @@ function Table({ colummns, datas, columnAction }) {
           <tbody>
             {datas?.length > 0 &&
               datas.map((data, index) => {
+                console.log(data);
                 const listTd = [];
                 let i = 0;
                 for (const item in data) {
                   if (Object.hasOwnProperty.call(data, item)) {
-                    // data[colummns[i].value]
                     listTd.push(
                       <td className="py-2 px-3" align={colummns[i]?.align}>
                         {colummns[i].type == "image" ? (
