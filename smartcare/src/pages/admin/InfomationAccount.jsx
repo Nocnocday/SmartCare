@@ -14,7 +14,7 @@ function InfomationAccount() {
   ];
 
   return (
-    <Layout>
+    <Layout heading={""} type={3}>
       <div className="rounded-lg overflow-y-auto relative  rounded-lg shadow bg-[#fafafa] h-[500px] mb-[10px] p-[16px]">
         {data?.length > 0 &&
           data.map((item, index) => (

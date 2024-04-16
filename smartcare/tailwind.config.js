@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}",'node_modules/flowbite-react/lib/esm/**/*.js'],
   theme: {
     extend: {
       colors: {
@@ -11,7 +11,7 @@ export default {
         secondColor: "#fff",
       },
       boxShadow: {
-        c: '0 0px 100px 40px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+        c: "0 0px 100px 40px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
       },
       backgroundColor: {
         overlay: "rgba(0,0,0,0.7)",
@@ -23,5 +23,9 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("flowbite/plugin")({
+      charts: true,
+    }),
+  ],
 };

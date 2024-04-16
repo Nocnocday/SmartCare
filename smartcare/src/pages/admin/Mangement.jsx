@@ -6,7 +6,8 @@ import Layout from "../../components/layouts";
 
 import { colummns } from "./constants";
 
-function Management({ navigate, location }) {
+function Management({header}) {
+ 
   const datas = [
     {
       id: "123",
@@ -146,8 +147,8 @@ function Management({ navigate, location }) {
     },
   ];
   return (
-    <Layout>
-      <Table colummns={colummns} datas={datas} columnAction={columnAction}/>
+    <Layout heading={header} type={1}>
+      <Table colummns={colummns} datas={datas} columnAction={columnAction} />
     </Layout>
   );
 }

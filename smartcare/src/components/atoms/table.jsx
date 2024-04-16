@@ -53,7 +53,6 @@ function Table({ colummns, datas, columnAction }) {
           <tbody>
             {datas?.length > 0 &&
               datas.map((data, index) => {
-                console.log(data);
                 const listTd = [];
                 let i = 0;
                 for (const item in data) {

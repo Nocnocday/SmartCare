@@ -1,45 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { Input, Button } from "../../atoms";
-import { pathAdmin } from "../../../utils/path";
+import React from "react";
+import { Button, Input } from "../../atoms";
 
-function Header() {
-  const location = useLocation();
-  const [type, setType] = useState(() => {
-    switch (location.pathname) {
-      case pathAdmin.MANAGE_STUDENT:
-        return 1;
-      case pathAdmin.MANAGE_TEACHER:
-        return 1;
-      case pathAdmin.INFO_ACCOUNT:
-        return 3;
-      default:
-        break;
-    }
-  });
-  useEffect(() => {
-    const titleDiv = document.querySelector("#title-page");
-    switch (location.pathname) {
-      case pathAdmin.MANAGE_STUDENT:
-        titleDiv.textContent = "Quản lý học sinh";
-        setType(1);
-        break;
-      case pathAdmin.MANAGE_TEACHER:
-        titleDiv.textContent = "Quản lý giáo viên";
-        setType(1);
-        break;
-      case pathAdmin.INFO_ACCOUNT:
-        setType(3);
-        break;
-      default:
-        break;
-    }
-  }, [location]);
+function Header({heading,type}) {
   return (
     <>
       {type === 1 && (
         <div className="flex justify-between px-[16px]">
-          <h1 className="my-[0px] text-[40px]" id="title-page"></h1>
+          <h1 className="my-[0px] text-[40px]" id="title-page">{heading}</h1>
           <div className="flex flex-col mt-[20px]">
             <Input
               type="text"
@@ -48,6 +15,11 @@ function Header() {
             />
             <Button>Tạo tài khoản</Button>
           </div>
+        </div>
+      )}
+      {type === 2 && (
+        <div className="flex justify-between px-[16px]">
+          <h1 className="my-[0px] text-[40px]" id="title-page">{heading}</h1>
         </div>
       )}
       {type === 3 && (
