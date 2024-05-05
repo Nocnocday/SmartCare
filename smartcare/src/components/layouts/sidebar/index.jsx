@@ -3,8 +3,8 @@ import { IoIosLogOut } from "react-icons/io";
 import { NavLink } from "react-router-dom";
 import { categoriesAdmin, categoriesAssisstant } from "./constants";
 function Sidebar() {
-  const role = 2;
-  const categories = role == 1 ? categoriesAdmin : categoriesAssisstant;
+  const role = 1;
+  const categories = role == 2 ? categoriesAdmin : categoriesAssisstant;
   return (
     <div className="bg-sidebar h-[calc(100vh-10px)] p-5 fixed w-[280px] rounded-md">
       <div className="flex justify-between items-center">

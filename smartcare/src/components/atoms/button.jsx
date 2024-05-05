@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 
 function Button({ children, type, path, classButton, handleClick, ...rest }) {
-  const classBtn = `mt-[26px] w-[142px] bg-sidebar inline-block text-center py-[6px] text-secondColor ${classButton}`;
+  const classBtn = ` mt-[26px] w-[142px] bg-sidebar inline-block text-center py-[6px] text-secondColor ${classButton}`;
   return (
     <>
       {type === "link" ? (

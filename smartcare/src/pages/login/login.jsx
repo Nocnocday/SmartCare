@@ -20,20 +20,20 @@ function Login() {
             <label htmlFor="email" className="block mb-[8px]">
               Email:
             </label>
-            <input
+            <Input
               placeholder="Email address"
               id="email"
-              className="outline-none p-[8px] bg-transparent border border-sidebar w-[100%] h-[40px] rounded"
+              className="outline-none p-[8px] border border-sidebar w-[100%] h-[40px] rounded"
             />
           </div>
           <div className="text-left">
             <label htmlFor="password" className="block mb-[8px]">
               Password:
             </label>
-            <input
+            <Input
               placeholder={"Password"}
               id="password"
-              className="outline-none p-[8px] bg-transparent border border-sidebar w-[100%] h-[40px] rounded"
+              className="outline-none p-[8px] border border-sidebar w-[100%] h-[40px] rounded"
             />
           </div>
           <div className="flex inline-block items-center mt-[16px] items-end">
