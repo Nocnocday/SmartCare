@@ -1,6 +1,7 @@
 import Chart from "react-apexcharts";
 import { FaUser } from "react-icons/fa";
 import Layout from "../../components/layouts";
+
 function Stats() {
   const chartConfig1 = {
     type: "pie",
@@ -20,18 +21,17 @@ function Stats() {
         enabled: false,
       },
       labels: ["Lớp mầm", "Lớp lá", "Lớp lớn"],
-      colors: ["#020617", "#ff8f00", "#00897b"],
+      colors: ["#DA9F0A", "#EA8484", "#8D31E9"],
       legend: {
         show: true,
-        position: 'bottom',
+        position: "bottom",
         markers: {
           width: 50,
           height: 30,
           strokeWidth: 0,
-          strokeColor: '#fff',
+          strokeColor: "#fff",
           radius: 0,
-          
-      },
+        },
       },
     },
   };
@@ -99,21 +99,21 @@ function Stats() {
           <FaUser className="inline-block mr-[32px] text-[24px]" />
           <div className="text-center inline-block">
             <p>Chưa thanh toán</p>
-            <span>50000000</span>
+            <span>10000000</span>
           </div>
         </div>
         <div className="inline-flex justify-between items-center shadow py-[8px] px-[16px] mx-[32px]">
           <FaUser className="inline-block mr-[32px] text-[24px]" />
           <div className="text-center inline-block">
-            <p>Chưa thanh toán</p>
-            <span>50000000</span>
+            <p>Đã thanh toán</p>
+            <span>5000000</span>
           </div>
         </div>
         <div className="inline-flex justify-between items-center shadow py-[8px] px-[16px] mx-[32px]">
           <FaUser className="inline-block mr-[32px] text-[24px]" />
           <div className="text-center inline-block">
-            <p>Chưa thanh toán</p>
-            <span>50000000</span>
+            <p>Tổng tiền</p>
+            <span>15000000</span>
           </div>
         </div>
         <div className="flex mt-[40px]">

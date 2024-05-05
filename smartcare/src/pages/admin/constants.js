@@ -68,6 +68,6 @@ export const colummns = [
       value:'email',
       width: "200px",
       action: true,
-      align: "left",
+      align: "center",
     },
   ];
