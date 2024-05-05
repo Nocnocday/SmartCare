@@ -12,9 +12,9 @@ export const pathAdmin = {
 
 export const pathAssisstant = {
     // Member
-    ASSISSTANT: "/assisstant",
-    MANAGE_SCHEDULE: "/manage-schedule",
-    MANAGE_FEE: "/manage-fee",
+    ASSISSTANT: "assisstant",
+    MANAGE_SCHEDULE: "/assisstant/manage-schedule",
+    MANAGE_FEE: "/assisstant/manage-fee",
 };
 
 export const common = {
