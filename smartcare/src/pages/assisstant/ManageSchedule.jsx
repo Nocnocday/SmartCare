@@ -1,10 +1,11 @@
 import { useRef } from "react";
 import Layout from "../../components/layouts";
 import { debounce } from "../../utils/utils";
+import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
 
 function ManageSchedule() {
   const schedule = useRef({
-    9: {
+    "9:00": {
       Monday: "",
       Tuesday: "",
       Wednesday: "",
@@ -12,7 +13,7 @@ function ManageSchedule() {
       Friday: "",
       Saturday: "",
     },
-    11: {
+    "11:00": {
       Monday: "",
       Tuesday: "",
       Wednesday: "",
@@ -20,7 +21,7 @@ function ManageSchedule() {
       Friday: "",
       Saturday: "",
     },
-    13: {
+    "13:00": {
       Monday: "",
       Tuesday: "",
       Wednesday: "",
@@ -28,7 +29,7 @@ function ManageSchedule() {
       Friday: "",
       Saturday: "",
     },
-    17: {
+    "17:00": {
       Monday: "",
       Tuesday: "",
       Wednesday: "",
@@ -37,6 +38,7 @@ function ManageSchedule() {
       Saturday: "",
     },
   });
+  const week = useRef();
 
   const getHours = Object.keys(schedule.current);
   const getDayOfWeek = Object.keys(schedule.current?.[getHours[0]]);
@@ -48,9 +50,40 @@ function ManageSchedule() {
       e.target.style.color = "";
     }
   }, 3000);
+
+  const handlePrev = () => {
+    console.log(week.current.querySelector("h5"));
+    console.log(week.current.querySelector("p"));
+  };
+  const handleNext = () => {
+    console.log(week.current);
+  };
+
   return (
     <Layout heading={"Quản lý lịch ăn"} type={2}>
       <div className="shadow p-[12px] mt-[20px] bg-[#ccc]">
+        <ul className="flex justify-center">
+          <li>
+            <span
+              className="p-[8px] mx-[4px] inline-block w-[16px] h-[16px] box-content rounded-full text-center cursor-pointer"
+              onClick={handlePrev}
+            >
+              <GrFormPreviousLink className="text-sidebar" />
+            </span>
+          </li>
+          <li className="text-center" ref={week}>
+            <h5 className="text-[18px]">Tuần 25</h5>
+            <p className="text-[14px]">(6 - 11/05/2024)</p>
+          </li>
+          <li>
+            <span
+              className="p-[8px] mx-[4px] inline-block w-[16px] h-[16px] box-content rounded-full text-center cursor-pointer"
+              onClick={handleNext}
+            >
+              <GrFormNextLink className="text-sidebar" />
+            </span>
+          </li>
+        </ul>
         <table style={{ borderCollapse: "separate", borderSpacing: "8px" }}>
           <thead>
             <tr>
@@ -100,7 +133,7 @@ function ManageSchedule() {
                             ))} */}
 
                           <p
-                          className="text-left p-[10px]"
+                            className="text-left p-[10px]"
                             key={hour + "-" + i}
                             contentEditable="true"
                             suppressContentEditableWarning={true}
