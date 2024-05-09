@@ -5,7 +5,7 @@ export const pathAdmin = {
     INFO_ACCOUNT: "/admin/information-account",
     MANAGE_STUDENT: "/admin/manage-student",
     MANAGE_TEACHER: "/admin/manage-teacher",
-    STATISTICS: "/admin/statistics",
+    STATISTICS: "/admin/dashboard",
     STUDENTDETAIL: "studentdetail",
     STUDENTDETAIL_UID: "studentdetail/:uid",
 };
@@ -15,6 +15,7 @@ export const pathAssisstant = {
     ASSISSTANT: "assisstant",
     MANAGE_SCHEDULE: "/assisstant/manage-schedule",
     MANAGE_FEE: "/assisstant/manage-fee",
+   
 };
 
 export const common = {

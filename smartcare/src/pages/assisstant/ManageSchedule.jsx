@@ -5,7 +5,7 @@ import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
 
 function ManageSchedule() {
   const schedule = useRef({
-    9: {
+    "9:00": {
       Monday: "",
       Tuesday: "",
       Wednesday: "",
@@ -13,7 +13,7 @@ function ManageSchedule() {
       Friday: "",
       Saturday: "",
     },
-    11: {
+    "11:00": {
       Monday: "",
       Tuesday: "",
       Wednesday: "",
@@ -21,7 +21,7 @@ function ManageSchedule() {
       Friday: "",
       Saturday: "",
     },
-    13: {
+    "13:00": {
       Monday: "",
       Tuesday: "",
       Wednesday: "",
@@ -29,7 +29,7 @@ function ManageSchedule() {
       Friday: "",
       Saturday: "",
     },
-    17: {
+    "17:00": {
       Monday: "",
       Tuesday: "",
       Wednesday: "",
@@ -38,7 +38,7 @@ function ManageSchedule() {
       Saturday: "",
     },
   });
-  const week = useRef()
+  const week = useRef();
 
   const getHours = Object.keys(schedule.current);
   const getDayOfWeek = Object.keys(schedule.current?.[getHours[0]]);
@@ -61,7 +61,8 @@ function ManageSchedule() {
     console.log(week.current.querySelector('h5'));
     console.log(week.current.querySelector('p'));
   }
-  
+
+
   return (
     <Layout heading={"Quản lý lịch ăn"} type={2}>
       <div className="shadow p-[12px] mt-[20px] bg-[#ccc]">

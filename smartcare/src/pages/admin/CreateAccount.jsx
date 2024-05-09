@@ -4,7 +4,7 @@ import Layout from "../../components/layouts";
 
 function CreateAccount() {
   return (
-    <Layout heading={"Thống kê"} type={2}>
+    <Layout heading={"Tạo Tài Khoản"} type={2}>
       <div className="shadow p-[12px] mt-[20px]">
         <div className=" flex flex-wrap">
           <div className="mb-[20px] w-[25%] px-[8px]">
@@ -34,8 +34,10 @@ function CreateAccount() {
             <Select
               classSelect="w-[100%] mt-[8px] h-[40px]"
               datas={[
-                { key: "0", value: "admin" },
-                { key: "1", value: "Điều dưỡng viên" },
+                { key: "0", value: "Admin" },
+                { key: "1", value: "Điều hướng viên" },
+                { key: "2", value: "Giáo viên" },
+                { key: "3", value: "Học sinh" },
               ]}
             />
           </div>
@@ -132,8 +134,9 @@ function CreateAccount() {
             <Select
               classSelect="w-[100%] mt-[8px] h-[40px]"
               datas={[
-                { key: "0", value: "Nam" },
-                { key: "1", value: "Nữ" },
+                { key: "0", value: "Lớp mầm" },
+                { key: "1", value: "Lớp lá" },
+                { key: "2", value: "Lớp lớn" },
               ]}
             />
           </div>
@@ -148,7 +151,9 @@ function CreateAccount() {
             />
           </div>
         </div>
-        <Button style={{display:"block",margin:"auto"}}>Tạo tài khoản</Button>
+        <Button style={{ display: "block", margin: "auto" }}>
+          Tạo tài khoản
+        </Button>
       </div>
     </Layout>
   );
