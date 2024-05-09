@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-
-
 function Button({ children, type, path, classButton, handleClick, ...rest }) {
   const classBtn = ` mt-[26px] w-[142px] bg-sidebar inline-block text-center py-[6px] text-secondColor ${classButton}`;
   return (
@@ -12,7 +10,7 @@ function Button({ children, type, path, classButton, handleClick, ...rest }) {
           {children}
         </Link>
       ) : (
-        <button className={classBtn} onClick={handleClick} {...rest}>
+        <button disable className={classBtn} onClick={e=>{handleClick(e)}} {...rest}>
           {children}
         </button>
       )}

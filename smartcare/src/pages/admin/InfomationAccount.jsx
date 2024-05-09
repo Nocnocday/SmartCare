@@ -1,16 +1,17 @@
 import React from "react";
 import Layout from "../../components/layouts";
 import { InputRead } from "../../components/molecule";
-
+import { useSelector } from "react-redux";
 function InfomationAccount() {
+  const account = useSelector((state) => state.account)
   const data = [
-    { field: "Tên", value: "Nguyễn Như Ngọc" },
-    { field: "Số điện thoại", value: "0987665432" },
-    { field: "Vai trò", value: "Admin" },
-    { field: "Địa chỉ", value: "Đà Nẵng" },
-    { field: "Ngày sinh", value: "01-01-2001" },
-    { field: "Email", value: "ngoccute@gmail.com" },
-    { field: "Giới tính", value: "Nữ" },
+    { field: "Tên", value: account.name },
+    { field: "Số điện thoại", value: account.phone_number },
+    { field: "Vai trò", value: account?.role?.[0] },
+    { field: "Địa chỉ", value: account.address },
+    { field: "Ngày sinh", value: account.day_of_birth },
+    { field: "Email", value: account.email },
+    { field: "Giới tính", value: account.gender == 0 ? "Nam" : "Nữ" },
   ];
 
   return (

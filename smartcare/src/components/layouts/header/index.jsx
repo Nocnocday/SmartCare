@@ -1,7 +1,9 @@
 import React from "react";
 import { Button, Input } from "../../atoms";
+import { useSelector } from "react-redux";
 
 function Header({heading,type}) {
+  const account = useSelector((state) => state.account)
   return (
     <>
       {type === 1 && (
@@ -25,10 +27,10 @@ function Header({heading,type}) {
       {type === 3 && (
         <>
           <div className="flex">
-            <img src="https://placehold.co/100x100" alt="avatar" />
+            <img src={`${account.profile_image}`} alt="avatar" className="w-[62px] h-[62px] rounded-full"/>
             <div className="ml-[17px] mt-[-3px]">
-              <p>Ngocdangyew</p>
-              <p class="mt-[14px]">Số điện thoại: 0987654321</p>
+              <p>{account.name}</p>
+              <p class="mt-[14px]">Số điện thoại: {account.phone_number}</p>
             </div>
           </div>
           <div className="flex justify-between items-end">

@@ -73,6 +73,13 @@ html::-webkit-scrollbar-thumb:hover {
   animation: spin 0.5s linear 0s infinite;
 }
 
+.loading {
+  position: absolute;
+  animation: spin 0.5s linear 0s infinite;
+  top: calc(50% - 8px);
+  left: calc(50% - 8px);
+}
+
 body {
   margin: 0;
 }
