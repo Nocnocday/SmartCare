@@ -1,3 +1,4 @@
 import { login } from "./login";
+import { schedule } from "./schedule";
 
-export {login}
+export {login,schedule}

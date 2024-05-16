@@ -7,7 +7,7 @@ import { FaSpinner } from "react-icons/fa";
 import { Button, Input } from "../../components/atoms";
 import { login } from "../../services";
 import { getAccount } from '../../redux/action'
-import {pathAdmin} from '../../utils/path'
+import {pathAdmin,pathAssisstant} from '../../utils/path'
 
 function Login() {
   const dispatch= useDispatch()
@@ -38,16 +38,15 @@ function Login() {
       }
       // Thành công, be chưa trả status
       else{
-        const {data} = res
-        if(data && data.token){
+        const {user,status} = res
+        if(status=='success'){
           toast.success("Thành công");
-          localStorage.setItem("token",data.token)
-          dispatch(getAccount(data))
-          console.log(data.role?.[0]);
-          if(data.role?.[0] == 'admin'){
+          localStorage.setItem("token",user.token)
+          dispatch(getAccount(user))
+          if(user.role?.[0] == 'admin'){
             navigate(pathAdmin.STATISTICS)
           }else{
-            console.log('chạy vào đây');
+            navigate(pathAssisstant.MANAGE_FEE)
           }
         }
       }

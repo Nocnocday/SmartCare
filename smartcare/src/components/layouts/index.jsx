@@ -4,7 +4,11 @@ import Sidebar from "./sidebar";
 import Header from "./header";
 
 function Layout({children,heading,type}) {
-  const account = useSelector((state) => state.account)
+  const account = useSelector((state) => {
+    console.log("state:::",state);
+    return state.account
+  })
+  console.log(account);
   return (
     <div className="flex h-full">
       <div className="section-left basis-[280px] relative">

@@ -5,7 +5,7 @@ class HttpClient {
     async get(url, params = {}) {
         try {
             const response = await axios.get(url, { params });
-            return response.data;
+            return response;
         } catch (error) {
             throw error;
         }
