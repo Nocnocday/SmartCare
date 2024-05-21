@@ -8,6 +8,7 @@ import { Button, Input } from "../../components/atoms";
 import { login } from "../../services";
 import { getAccount } from '../../redux/action'
 import {pathAdmin,pathAssisstant} from '../../utils/path'
+import { showToast } from "../../utils/utils";
 
 function Login() {
   const dispatch= useDispatch()
@@ -34,14 +35,17 @@ function Login() {
       submit.style.background = "#ccc";
       const res = await login(body);
       if (res.status == 401) {
-        toast.error(res.data.message);
+        showToast(res.data.message);
+      }
+      else if(res.status == "ERR_NETWORK"){
+        showToast("Lỗi kết nối...");
       }
       // Thành công, be chưa trả status
       else{
         const {user,status} = res
         if(status=='success'){
-          toast.success("Thành công");
-          localStorage.setItem("token",user.token)
+          showToast("Thành công");
+          sessionStorage.setItem("token",user.token)
           dispatch(getAccount(user))
           if(user.role?.[0] == 'admin'){
             navigate(pathAdmin.STATISTICS)

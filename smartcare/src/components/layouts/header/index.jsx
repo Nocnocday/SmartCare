@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Input } from "../../atoms";
 import { useSelector } from "react-redux";
 
-function Header({heading,type}) {
+function Header({heading,type,fnHeader}) {
   const account = useSelector((state) => state.account)
   return (
     <>
@@ -15,7 +15,7 @@ function Header({heading,type}) {
               classInput="w-[300px]"
               placeholder="Nhập nội dung tìm kiếm"
             />
-            <Button>Tạo tài khoản</Button>
+            <Button handleClick={fnHeader?.[0]}>Tạo tài khoản</Button>
           </div>
         </div>
       )}
@@ -36,8 +36,8 @@ function Header({heading,type}) {
           <div className="flex justify-between items-end">
             <h6 className="text-[#D3E4CD]">Thông tin cá nhân</h6>
             <div>
-              <Button classButton="mx-[6px]">Chỉnh sửa</Button>
-              <Button classButton="mx-[6px]">Xóa</Button>
+              <Button classButton="mx-[6px]" handleClick={fnHeader?.[0]}>Chỉnh sửa</Button>
+              <Button classButton="mx-[6px]" handleClick={fnHeader?.[1]}>Xóa</Button>
             </div>
           </div>
         </>

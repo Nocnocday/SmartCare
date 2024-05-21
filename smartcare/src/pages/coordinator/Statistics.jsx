@@ -1,6 +1,7 @@
 import Chart from "react-apexcharts";
 import { FaUser } from "react-icons/fa";
 import Layout from "../../components/layouts";
+import withLayout from "../../components/layouts";
 
 function Stats() {
   const chartConfig1 = {
@@ -93,7 +94,7 @@ function Stats() {
     },
   };
   return (
-    <Layout heading={"Thống kê"} type={2}>
+    
       <div className="shadow p-[12px] mt-[20px]">
         <div className="inline-flex justify-between items-center shadow py-[8px] px-[16px] mx-[32px]">
           <FaUser className="inline-block mr-[32px] text-[24px]" />
@@ -129,8 +130,8 @@ function Stats() {
           </div>
         </div>
       </div>
-    </Layout>
   );
 }
 
-export default Stats;
+export default withLayout(Stats, "Thống kê", 2, () => {});
+

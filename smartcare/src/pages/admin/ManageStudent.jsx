@@ -1,9 +1,151 @@
-import Management from "./Mangement";
+import { HiUserGroup } from "react-icons/hi2";
+import withLayout from "../../components/layouts";
+import { IoIosLogOut } from "react-icons/io";
+import Table from "../../components/atoms/table";
+import { colummns } from "../coordinator/constants";
 
 function ManageStudent() {
-    return ( <>
-    <Management header={"Quản lý học sinh"}/>
-    </> );
+    const datas = [
+        {
+          id: "123",
+          name: "Nguyễn Văn A",
+          parent: "Nguyễn Văn B",
+          class: "Mầm",
+          img: "https://placehold.co/100x100",
+          gender: "Nữ",
+          address: "Đà Nẵng",
+          date: "01-01-2022",
+          phone: "0987654321",
+          email: "ABC@gmail.com",
+        },
+        {
+          id: "123",
+          name: "Nguyễn Văn A",
+          parent: "Nguyễn Văn B",
+          class: "Mầm",
+          img: "https://placehold.co/100x100",
+          gender: "Nữ",
+          address: "Đà Nẵng",
+          date: "01-01-2022",
+          phone: "0987654321",
+          email: "ABC@gmail.com",
+        },
+        {
+          id: "123",
+          name: "Nguyễn Văn A",
+          parent: "Nguyễn Văn B",
+          class: "Mầm",
+          img: "https://placehold.co/100x100",
+          gender: "Nam",
+          address: "Đà Nẵng",
+          date: "01-01-2022",
+          phone: "0987654321",
+          email: "ABC@gmail.com",
+        },
+        {
+          id: "123",
+          name: "Nguyễn Văn A",
+          parent: "Nguyễn Văn B",
+          class: "Mầm",
+          img: "https://placehold.co/100x100",
+          gender: "Nam",
+          address: "Đà Nẵng",
+          date: "01-01-2022",
+          phone: "0987654321",
+          email: "ABC@gmail.com",
+        },
+        {
+          id: "123",
+          name: "Nguyễn Văn A",
+          parent: "Nguyễn Văn B",
+          class: "Mầm",
+          img: "https://placehold.co/100x100",
+          gender: "Nữ",
+          address: "Đà Nẵng",
+          date: "01-01-2022",
+          phone: "0987654321",
+          email: "ABC@gmail.com",
+        },
+        {
+          id: "123",
+          name: "Nguyễn Văn A",
+          parent: "Nguyễn Văn B",
+          class: "Mầm",
+          img: "https://placehold.co/100x100",
+          gender: "Nam",
+          address: "Đà Nẵng",
+          date: "01-01-2022",
+          phone: "0987654321",
+          email: "ABC@gmail.com",
+        },
+        {
+          id: "123",
+          name: "Nguyễn Văn A",
+          parent: "Nguyễn Văn B",
+          class: "Mầm",
+          img: "https://placehold.co/100x100",
+          gender: "Nam",
+          address: "Đà Nẵng",
+          date: "01-01-2022",
+          phone: "0987654321",
+          email: "ABC@gmail.com",
+        },
+        {
+          id: "123",
+          name: "Nguyễn Văn A",
+          parent: "Nguyễn Văn B",
+          class: "Mầm",
+          img: "https://placehold.co/100x100",
+          gender: "Nữ",
+          address: "Đà Nẵng",
+          date: "01-01-2022",
+          phone: "0987654321",
+          email: "ABC@gmail.com",
+        },
+        {
+          id: "123",
+          name: "Nguyễn Văn A",
+          parent: "Nguyễn Văn B",
+          class: "Mầm",
+          img: "https://placehold.co/100x100",
+          gender: "Nữ",
+          address: "Đà Nẵng",
+          date: "01-01-2022",
+          phone: "0987654321",
+          email: "ABC@gmail.com",
+        },
+        {
+          id: "123",
+          name: "Nguyễn Văn A",
+          parent: "Nguyễn Văn B",
+          class: "Mầm",
+          img: "https://placehold.co/100x100",
+          gender: "Nam",
+          address: "Đà Nẵng",
+          date: "01-01-2022",
+          phone: "0987654321",
+          email: "ABC@gmail.com",
+        },
+      ];
+      const columnAction = [
+        {
+          icon: HiUserGroup,
+          classIc: "cursor-pointer text-[#05b64c] inline-block",
+          handleClick: () => {},
+        },
+        {
+          icon: IoIosLogOut,
+          classIc: "cursor-pointer text-[#ff5050] inline-block",
+          handleClick: () => {
+            console.log("abcd");
+          },
+        },
+      ];
+  return (
+    <>
+      <Table colummns={colummns} datas={datas} columnAction={columnAction} />
+    </>
+  );
 }
 
-export default ManageStudent;
+export default withLayout(ManageStudent, "Quản lý học sinh", 1, () => {});

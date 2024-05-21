@@ -1,14 +1,14 @@
 import { applyMiddleware, createStore } from "redux";
 import rootReducer from "./reducer";
-import { localStorageMiddleware } from "./middleware";
+import { sessionStorageMiddleware } from "./middleware";
 
-const persistedState = localStorage.getItem("reduxState")
-  ? JSON.parse(localStorage.getItem("reduxState"))
+const persistedState = sessionStorage.getItem("reduxState")
+  ? JSON.parse(sessionStorage.getItem("reduxState"))
   : {};
 const store = createStore(
   rootReducer,
   persistedState,
-  applyMiddleware(localStorageMiddleware)
+  applyMiddleware(sessionStorageMiddleware)
 );
 
 export default store;

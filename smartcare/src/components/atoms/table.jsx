@@ -3,7 +3,7 @@ import Pagination from "./pagination";
 
 Table.defaultProps = {};
 function Table({
-  renderCssCustom,
+  renderCssCustom = ()=>{ },
   checkbox,
   colummns,
   datas,
@@ -82,25 +82,25 @@ function Table({
                   if (Object.hasOwnProperty.call(data, item)) {
                     listTd.push(
                       <td className="py-2 px-3" align={colummns[i]?.align}>
-                        {colummns[i].type == "image" ? (
+                        {colummns[i]?.type == "image" ? (
                           <img
-                            src={data[colummns[i].value]}
+                            src={data[colummns[i]?.value]}
                             alt=""
                             className="w-[60px] h-[60px]"
                           />
                         ) : (
                           <>
-                            {colummns[i].customCss ? (
+                            {colummns[i]?.customCss ? (
                               <div
                                 className={renderCssCustom(
-                                  data[colummns[i].value]
+                                  data[colummns[i]?.value]
                                 )}
                                 onClick={handlePaid}
                               >
-                                {data[colummns[i].value]}
+                                {data[colummns[i]?.value]}
                               </div>
                             ) : (
-                              data[colummns[i].value]
+                              data[colummns[i]?.value]
                             )}
                           </>
                         )}

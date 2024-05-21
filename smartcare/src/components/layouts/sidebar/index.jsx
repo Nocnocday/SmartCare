@@ -3,7 +3,6 @@ import { IoIosLogOut } from "react-icons/io";
 import { NavLink } from "react-router-dom";
 import { categoriesAdmin, categoriesAssisstant } from "./constants";
 function Sidebar({account}) {
-  console.log("account",account);
   const categories = account?.role[0] == 'admin' ? categoriesAdmin : categoriesAssisstant;
   
   return (
@@ -11,15 +10,15 @@ function Sidebar({account}) {
       <div className="flex items-center">
         <div className="avatar">
           <img
-            src={`${account.profile_image}`}
+            src={`${account?.profile_image}`}
             alt="name"
             className="w-[62px] h-[62px] rounded-full"
           />
         </div>
         <div className="ml-[12px]">
-          <h3 className="text-secondColor">{account.name}</h3>
+          <h3 className="text-secondColor">{account?.name}</h3>
           <p className="text-secondColor">
-            Vai trò: <span>{account.role[0]}</span>
+            Vai trò: <span>{account?.role[0]}</span>
           </p>
         </div>
       </div>

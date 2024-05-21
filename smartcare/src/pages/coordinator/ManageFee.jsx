@@ -1,10 +1,10 @@
-import React,{forwardRef} from "react";
-import { IoTrashOutline,IoPencil } from "react-icons/io5";
+import React from "react";
+import { IoPencil, IoTrashOutline } from "react-icons/io5";
 import Table from "../../components/atoms/table";
-import Layout from "../../components/layouts";
 
-import { colummns } from "./constants";
 import { Button, Input } from "../../components/atoms";
+import withLayout from "../../components/layouts";
+import { colummns } from "./constants";
 
 function ManageFee() {
   const datas = [
@@ -94,7 +94,6 @@ function ManageFee() {
       icon: IoPencil,
       classIc: "cursor-pointer text-[#05b64c] inline-block",
       handleClick: () => {
-        console.log("abcd");
       },
     },
     {
@@ -132,7 +131,6 @@ function ManageFee() {
     );
   };
   return (
-    <Layout heading={"Quản lý học phí"} type={2}>
       <Table
         styleTable={{ width: "100%" }}
         checkbox={true}
@@ -146,8 +144,8 @@ function ManageFee() {
           }`;
         }}
       />
-    </Layout>
   );
 }
 
-export default ManageFee;
+export default withLayout(ManageFee, "Quản lý học phí", 2, () => {});
+

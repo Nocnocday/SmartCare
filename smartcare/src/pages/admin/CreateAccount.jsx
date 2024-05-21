@@ -1,10 +1,9 @@
 import { Button, Input } from "../../components/atoms";
 import Select from "../../components/atoms/select";
-import Layout from "../../components/layouts";
+import withLayout from "../../components/layouts";
 
 function CreateAccount() {
   return (
-    <Layout heading={"Tạo Tài Khoản"} type={2}>
       <div className="shadow p-[12px] mt-[20px]">
         <div className=" flex flex-wrap">
           <div className="mb-[20px] w-[25%] px-[8px]">
@@ -155,8 +154,7 @@ function CreateAccount() {
           Tạo tài khoản
         </Button>
       </div>
-    </Layout>
   );
 }
 
-export default CreateAccount;
+export default withLayout(CreateAccount, "Tạo Tài Khoản", 2, () => {});

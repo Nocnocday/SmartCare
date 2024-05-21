@@ -5,7 +5,7 @@ const instance = axios.create({
 })
 
 function getToken() {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
 }
 
 instance.interceptors.request.use(function (config) {
@@ -21,17 +21,18 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(function (response) {
     return response.data;
   }, function (error) {
+    console.error(error)
       let res = {}
    if(error.response){
     res.data = error.response.data
     res.status = error.response.status
     res.headers = error.response.headers
-   }else if(error.request){
-    
+   }else if(error.code == "ERR_NETWORK"){
+    res.status = error.code
+    res.message = error.message
    }else{
 
    }
-   console.log(res);
     return res
   });
 export default instance

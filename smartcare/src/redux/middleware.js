@@ -1,7 +1,7 @@
-export const localStorageMiddleware = store => next => action => {
+export const sessionStorageMiddleware = store => next => action => {
     const result = next(action);
     
-    localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+    sessionStorage.setItem('reduxState', JSON.stringify(store.getState()));
     
     return result;
   };
