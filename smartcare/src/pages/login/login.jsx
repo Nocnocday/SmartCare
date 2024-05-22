@@ -42,8 +42,10 @@ function Login() {
       }
       // Thành công, be chưa trả status
       else{
-        const {user,status} = res
-        if(status=='success'){
+        const {data,status} = res
+        console.log(status);
+        if(status==200){
+          const user = data?.data
           showToast("Thành công");
           sessionStorage.setItem("token",user.token)
           dispatch(getAccount(user))

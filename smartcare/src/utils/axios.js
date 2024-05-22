@@ -19,9 +19,9 @@ instance.interceptors.request.use(function (config) {
 });
 
 instance.interceptors.response.use(function (response) {
-    return response.data;
+    return response;
   }, function (error) {
-    console.error(error)
+    console.log(error.response);
       let res = {}
    if(error.response){
     res.data = error.response.data
