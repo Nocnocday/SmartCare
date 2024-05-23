@@ -36,7 +36,7 @@ export const categoriesAssisstant = [
     {
         name: "Thống kê",
         icon:GoHomeFill,
-        path:pathAdmin.STATISTICS,
+        path:pathAssisstant.STATISTICS,
     },
     {
         name: "Quản lý lịch ăn",

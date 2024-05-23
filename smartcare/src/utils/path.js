@@ -12,7 +12,7 @@ export const pathAdmin = {
 
 export const pathAssisstant = {
     // Member
-    ASSISSTANT: "coordinator",
+    STATISTICS: "/coordinator/dashboard",
     MANAGE_SCHEDULE: "/coordinator/manage-schedule",
     MANAGE_FEE: "/coordinator/manage-fee",
    

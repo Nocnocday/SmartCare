@@ -2,7 +2,7 @@ import { HiUserGroup } from "react-icons/hi2";
 import withLayout from "../../components/layouts";
 import { IoIosLogOut } from "react-icons/io";
 import Table from "../../components/atoms/table";
-import { colummns } from "../coordinator/constants";
+import { colummns } from "./constants";
 
 function ManageTeacher() {
   const datas = [

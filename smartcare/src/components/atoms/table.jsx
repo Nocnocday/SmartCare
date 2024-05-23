@@ -3,7 +3,7 @@ import Pagination from "./pagination";
 
 Table.defaultProps = {};
 function Table({
-  renderCssCustom = ()=>{ },
+  renderCssCustom = () => {},
   checkbox,
   colummns,
   datas,
@@ -11,7 +11,10 @@ function Table({
   search,
   handlePaid,
   styleTable = {},
+  totalPages = 0,
+  onPageChange,
 }) {
+  console.log(datas);
   const tableRef = useRef();
   const [listChecked, setListChecked] = useState(new Array(10).fill(false));
   useEffect(() => {
@@ -40,9 +43,12 @@ function Table({
           style={{ width: "max-content", ...styleTable }}
         >
           <thead>
-            <tr className="center" >
+            <tr className="center">
               {checkbox && (
-                <th className="py-2 px-3 sticky top-0  bg-[#fff]" align="center">
+                <th
+                  className="py-2 px-3 sticky top-0  bg-[#fff]"
+                  align="center"
+                >
                   <input
                     type="checkbox"
                     className="outline-none"
@@ -149,7 +155,7 @@ function Table({
         </table>
       </div>
       <div className="pt-[10px] pagination">
-        <Pagination totalPages={1} />
+        <Pagination totalPages={totalPages} onPageChange={onPageChange} />
       </div>
     </>
   );

@@ -15,6 +15,7 @@ const privateRoute = [
   { path: pathAdmin.INFO_ACCOUNT, component: InfomationAccount },
   { path: pathAdmin.STATISTICS, component: Stats },
   { path: pathAdmin.CREATE_ACCOUNT, component: CreateAccount },
+  { path: pathAssisstant.STATISTICS, component: Stats },
   { path: pathAssisstant.MANAGE_FEE, component:ManageFee  },
   { path: pathAssisstant.MANAGE_SCHEDULE, component:ManageSchedule  },
 ];
