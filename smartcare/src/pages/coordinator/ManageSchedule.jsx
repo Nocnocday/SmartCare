@@ -146,7 +146,7 @@ function ManageSchedule() {
     );
 
   return (
-    <div className="shadow p-[12px] bg-[#ccc]" ref={divRef}>
+    <div className="shadow p-[12px] " ref={divRef}>
       <ul className="flex justify-center items-center">
         <li>
           <span
