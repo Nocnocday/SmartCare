@@ -14,7 +14,6 @@ function Table({
   totalPages = 0,
   onPageChange,
 }) {
-  console.log(datas);
   const tableRef = useRef();
   const [listChecked, setListChecked] = useState(new Array(10).fill(false));
   useEffect(() => {
@@ -34,7 +33,7 @@ function Table({
     <>
       <div
         ref={tableRef}
-        className="overflow-auto rounded-lg relative rounded-lg shadow bg-[#fafafa] custom-scrollbar"
+        className="overflow-auto relative rounded-lg shadow bg-[#fafafa] custom-scrollbar"
       >
         {search && search}
 
@@ -86,32 +85,35 @@ function Table({
                 let i = 0;
                 for (const item in data) {
                   if (Object.hasOwnProperty.call(data, item)) {
-                    listTd.push(
-                      <td className="py-2 px-3" align={colummns[i]?.align}>
-                        {colummns[i]?.type == "image" ? (
-                          <img
-                            src={data[colummns[i]?.value]}
-                            alt=""
-                            className="w-[60px] h-[60px]"
-                          />
-                        ) : (
-                          <>
-                            {colummns[i]?.customCss ? (
-                              <div
-                                className={renderCssCustom(
-                                  data[colummns[i]?.value]
-                                )}
-                                onClick={handlePaid}
-                              >
-                                {data[colummns[i]?.value]}
-                              </div>
-                            ) : (
-                              data[colummns[i]?.value]
-                            )}
-                          </>
-                        )}
-                      </td>
-                    );
+                    if (colummns[i]) {
+                      listTd.push(
+                        <td className="py-2 px-3" align={colummns[i]?.align}>
+                          {colummns[i]?.type == "image" ? (
+                            <img
+                              src={data[colummns[i]?.value]}
+                              alt=""
+                              className="w-[60px] h-[60px]"
+                            />
+                          ) : (
+                            <>
+                              {colummns[i]?.customCss ? (
+                                <div
+                                  className={renderCssCustom(
+                                    data[colummns[i]?.value]
+                                  )}
+                                  onClick={handlePaid}
+                                >
+                                  {data[colummns[i]?.value]}
+                                </div>
+                              ) : (
+                                data[colummns[i]?.value]
+                              )}
+                            </>
+                          )}
+                        </td>
+                      );
+                    }
+
                     i++;
                   }
                 }
@@ -122,11 +124,16 @@ function Table({
                         return (
                           <Icon
                             className={`mx-[5px] ${action.classIc}`}
-                            onClick={action.handleClick}
+                            onClick={() => {
+                              action.handleClick(data.id);
+                            }}
                           />
                         );
                       })
                     : [];
+
+                // console.log(i);
+
                 return (
                   <tr
                     key={data.id}

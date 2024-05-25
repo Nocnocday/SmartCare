@@ -41,7 +41,10 @@ html::-webkit-scrollbar-thumb:hover {
 .required{
   color: red;
 }
+.border-red-500{
+  border:1px solid red !important;
 
+}
 [contenteditable="true"]:focus {
   outline: none;
   border: none;

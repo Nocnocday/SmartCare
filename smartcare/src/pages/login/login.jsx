@@ -104,8 +104,6 @@ function Login() {
             />
           </div>
           <div className="flex inline-block items-center mt-[16px] items-end">
-            <input type="checkbox" className="w-[16px] h-[16px] mr-[8px]" />
-            <span>Remember me</span>
             <Link className="flex-1 text-right  text-sidebar">
               Forgot password?
             </Link>

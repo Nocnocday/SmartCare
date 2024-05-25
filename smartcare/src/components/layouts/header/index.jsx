@@ -9,13 +9,14 @@ function Header({heading,type,fnHeader}) {
       {type === 1 && (
         <div className="flex justify-between px-[16px]">
           <h1 className="my-[0px] text-[40px]" id="title-page">{heading}</h1>
-          <div className="flex flex-col mt-[20px]">
+          <div className="flex flex-col mt-[10px]">
             <Input
               type="text"
               classInput="w-[300px]"
               placeholder="Nhập nội dung tìm kiếm"
             />
-            <Button handleClick={fnHeader?.[0]}>Tạo tài khoản</Button>
+            {/* <Button handleClick={fnHeader?.[0]}>Tạo tài khoản</Button> */}
+            <div className="h-[20px]"></div>
           </div>
         </div>
       )}
