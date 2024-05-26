@@ -85,8 +85,8 @@ function ManageSchedule() {
                       background: `${
                         moment().format("DD/MM/YYYY") ==
                         moment(schedule.date).format("DD/MM/YYYY")
-                          ? "red"
-                          : "transparent"
+                          ? "#FEFDF1"
+                          : index %2 ==0 ? '#F0EBE3' : ''
                       }`,
                     }}
                   >
@@ -106,8 +106,8 @@ function ManageSchedule() {
                       background: `${
                         moment().format("DD/MM/YYYY") ==
                         moment(schedule.date).format("DD/MM/YYYY")
-                          ? "red"
-                          : "transparent"
+                          ? "#FEFDF1"
+                          : index %2==0 ? '#F0EBE3' : ''
                       }`,
                     }}
                   >
@@ -127,8 +127,8 @@ function ManageSchedule() {
                       background: `${
                         moment().format("DD/MM/YYYY") ==
                         moment(schedule.date).format("DD/MM/YYYY")
-                          ? "red"
-                          : "transparent"
+                          ? "#FEFDF1"
+                          : index % 2 == 0 ? '#F0EBE3' : ''
                       }`,
                     }}
                   >
