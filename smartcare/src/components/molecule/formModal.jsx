@@ -1,26 +1,19 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   getDistricts,
   getProvinces,
   getWards,
 } from "../../services/locationServices";
-import { CLASSROOM } from "../../utils/constants";
+import { getStudent } from "../../services/studentsService";
 import { Input } from "../atoms";
 import Select from "../atoms/select";
-const ModalForm = ({ open, onClose, onAddStudent }) => {
-  const [student, setStudent] = useState({
-    name: "",
-    parent: "",
-    classroom: "",
-    gender: "Nam",
-    address: "",
-    date: "",
-    phone: "",
-    email: "",
-  });
+import { useSelector } from "react-redux";
+const ModalForm = ({ open, onClose, onAddStudent, idStudent }) => {
+  const CLASSROOM = useSelector((state) => state.classrooms);
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [wards, setWards] = useState([]);
+  const [photoPreview, setPhotoPreview] = useState("");
   // Call tỉnh thành phố lúc vào trang
   useLayoutEffect(() => {
     try {
@@ -53,6 +46,45 @@ const ModalForm = ({ open, onClose, onAddStudent }) => {
     } catch (err) {}
   }, []);
 
+  useEffect(() => {
+    if (!idStudent) return;
+    (async () => {
+      const res = await getStudent(idStudent);
+      const dataStudent = {
+        ...res,
+        parent_name: res.parent.name,
+        parent_date_of_birth: res.parent.date_of_birth,
+        parent_gender: res.parent.gender,
+      };
+      delete dataStudent.parent;
+      delete dataStudent.profile_image;
+      const fields = Object.keys(dataStudent);
+      for (let i = 0; i < fields.length; i++) {
+        if (document.getElementById(fields[i])) {
+          document.getElementById(fields[i]).value = dataStudent[fields[i]];
+        }
+      }
+      const resDistricts = await getDistricts(dataStudent.province_id);
+      if (resDistricts && resDistricts.length > 0) {
+        const districts = resDistricts.map((district) => ({
+          key: district.id,
+          value: district.name,
+        }));
+        setDistricts(districts);
+        const resWards = await getWards(dataStudent.district_id);
+        if (resWards && resWards.length > 0) {
+          const wards = resWards.map((ward) => ({
+            key: ward.id,
+            value: ward.name,
+          }));
+          setWards(wards);
+        }
+      }
+      setPhotoPreview(res.profile_image);
+    })();
+  }, []);
+
+  const labelRef = useRef();
   if (!open) return null;
   const handleChange = (e) => {};
 
@@ -76,14 +108,24 @@ const ModalForm = ({ open, onClose, onAddStudent }) => {
       "address",
     ];
     requiredFields.forEach((field) => {
-      const input = document.getElementById(field);
-      if (!input.value) {
-        isValid = false;
-        input.classList.add("required");
+      if (idStudent && field == "password") {
       } else {
-        input.classList.remove("required");
+        const input = document.getElementById(field);
+        console.log(input);
+        if (!input.value) {
+          isValid = false;
+          input.classList.add("required");
+        } else {
+          input.classList.remove("required");
+        }
       }
     });
+    if (photoPreview == "") {
+      isValid = false;
+      labelRef.current.classList.add("required");
+    } else {
+      labelRef.current.classList.remove("required");
+    }
     return isValid;
   };
 
@@ -92,23 +134,23 @@ const ModalForm = ({ open, onClose, onAddStudent }) => {
     if (validateForm()) {
       let formData = new FormData(e.target);
       let data = {
-        name: '',
-        nickname: '',
-        address: '',
-        date_of_birth: '',
-        email: '',
-        gender: '',
-        profile_image: '',
-        phone_number: '',
-        username: '',
-        password: '',
-        classroom_id: '',
+        name: "",
+        nickname: "",
+        address: "",
+        date_of_birth: "",
+        email: "",
+        gender: "",
+        profile_image: "",
+        phone_number: "",
+        username: "",
+        password: "",
+        classroom_id: "",
         province_id: 1,
         district_id: 1,
         ward_id: 1,
-        parent_name: '',
-        parent_date_of_birth: '',
-        parent_gender: '',
+        parent_name: "",
+        parent_date_of_birth: "",
+        parent_gender: "",
       };
       formData.forEach((value, key) => {
         if (["province_id", "district_id", "ward_id"].includes(key)) {
@@ -117,7 +159,8 @@ const ModalForm = ({ open, onClose, onAddStudent }) => {
           data[key] = value;
         }
       });
-      onAddStudent(data);
+
+      onAddStudent(formData);
       onClose();
     }
   };
@@ -153,12 +196,26 @@ const ModalForm = ({ open, onClose, onAddStudent }) => {
       setWards(wards);
     }
   };
-  const classrooms = [];
-  for (const key in CLASSROOM) {
-    if (Object.hasOwnProperty.call(CLASSROOM, key)) {
-      classrooms.push({ key, value: CLASSROOM[key] });
+
+  const handlePhotoClick = () => {
+    document.getElementById("profile_image").click();
+  };
+
+  const handlePhotoChange = (event) => {
+    event.preventDefault();
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPhotoPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
-  }
+  };
+  const classrooms =
+    Array.isArray(CLASSROOM) && CLASSROOM.length > 0
+      ? CLASSROOM.map((item) => ({ key: item.id, value: item.name }))
+      : [];
 
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
@@ -174,7 +231,6 @@ const ModalForm = ({ open, onClose, onAddStudent }) => {
                 Họ và tên <span className="required">*</span>
               </label>
               <Input
-                value="324324234"
                 placeholder="Họ và tên"
                 id="name"
                 name="name"
@@ -188,7 +244,6 @@ const ModalForm = ({ open, onClose, onAddStudent }) => {
                 Nick name
               </label>
               <Input
-                value="324324234"
                 placeholder="nickname"
                 name="nickname"
                 id="nickname"
@@ -242,7 +297,6 @@ const ModalForm = ({ open, onClose, onAddStudent }) => {
                 Tên phụ huynh <span className="required">*</span>
               </label>
               <Input
-                value="324324234"
                 placeholder="Tên phụ huynh"
                 id="parent_name"
                 name="parent_name"
@@ -292,19 +346,22 @@ const ModalForm = ({ open, onClose, onAddStudent }) => {
                 className="outline-none p-[8px] border border-sidebar w-[100%] h-[40px] rounded mt-[8px]"
               />
             </div>
-            <div className="w-[50%] px-[8px]">
-              <label htmlFor="password" className="font-bold">
-                Mật khẩu <span className="required">*</span>
-              </label>
-              <Input
-                value="324324234"
-                type={"password"}
-                placeholder="password"
-                name="password"
-                id="password"
-                className="outline-none p-[8px] border border-sidebar w-[100%] h-[40px] rounded mt-[8px]"
-              />
-            </div>
+            {idStudent ? (
+              <></>
+            ) : (
+              <div className="w-[50%] px-[8px]">
+                <label htmlFor="password" className="font-bold">
+                  Mật khẩu <span className="required">*</span>
+                </label>
+                <Input
+                  type={"password"}
+                  placeholder="password"
+                  name="password"
+                  id="password"
+                  className="outline-none p-[8px] border border-sidebar w-[100%] h-[40px] rounded mt-[8px]"
+                />
+              </div>
+            )}
           </div>
 
           <div className="mb-[20px] px-[8px] w-[100%] flex">
@@ -313,7 +370,6 @@ const ModalForm = ({ open, onClose, onAddStudent }) => {
                 Số điện thoại <span className="required">*</span>
               </label>
               <Input
-                value="324324234"
                 placeholder="Số điện thoại"
                 name="phone_number"
                 type="text"
@@ -375,7 +431,6 @@ const ModalForm = ({ open, onClose, onAddStudent }) => {
               Địa chỉ <span className="required">*</span>
             </label>
             <Input
-              value="324324234"
               placeholder="Địa chỉ"
               type="text"
               id="address"
@@ -383,7 +438,30 @@ const ModalForm = ({ open, onClose, onAddStudent }) => {
               className="outline-none p-[8px] border border-sidebar w-[100%] h-[40px] rounded mt-[8px]"
             />
           </div>
-
+          <div className="mb-[20px] px-[8px] w-[100%]">
+            <label
+              className="font-bold"
+              onClick={handlePhotoClick}
+              ref={labelRef}
+            >
+              Ảnh học sinh <span className="required">*</span>
+            </label>
+            <input
+              type="file"
+              id="profile_image"
+              name="profile_image"
+              accept="image/*"
+              onChange={handlePhotoChange}
+              style={{ display: "none" }}
+            />
+            {photoPreview && (
+              <img
+                src={photoPreview}
+                alt="Ảnh học sinh"
+                className="w-[100px] h-[100px] mt-[8px]"
+              />
+            )}
+          </div>
           <div className="flex justify-center">
             <button
               type="button"

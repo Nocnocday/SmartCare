@@ -5,7 +5,12 @@ import Table from "../../components/atoms/table";
 import withLayout from "../../components/layouts";
 import ConfirmModal from "../../components/molecule/comfirmModal";
 import ModalForm from "../../components/molecule/formModal";
-import { addStudent, getStudents, removeStudent } from "../../services/studentsService";
+import {
+  addStudent,
+  getStudents,
+  removeStudent,
+  updateStudent,
+} from "../../services/studentsService";
 import { CLASSROOM } from "../../utils/constants";
 import { IoMdAdd } from "react-icons/io";
 import { showToast } from "../../utils/utils";
@@ -50,7 +55,10 @@ function ManageStudent() {
     {
       icon: CiEdit,
       classIc: "cursor-pointer text-[#05b64c] inline-block",
-      handleClick: () => {},
+      handleClick: (id) => {
+        setOpenAdd(true);
+        idStudent.current = id;
+      },
     },
     {
       icon: FaRegTrashAlt,
@@ -64,6 +72,7 @@ function ManageStudent() {
 
   const handleClose = () => {
     setOpen(false);
+    idStudent.current = null;
   };
 
   const handleConfirm = async () => {
@@ -78,24 +87,36 @@ function ManageStudent() {
     setOpen(false);
   };
 
-  const handleAddStudent =async (data)=>{
-    const res = await addStudent(data)
-    console.log(res);
-    if(res.status == 422){
-      showToast(res.data.message)
+  const handleAddStudent = async (formData) => {
+    if (idStudent.current) {
+      const res = await updateStudent(formData, idStudent.current);
+      console.log(res);
+      if (res.status == 422) {
+        showToast(res.data.message);
+      }
+      if (res.student) {
+        showToast("Cập nhật thành công");
+        setReload((reload) => !reload);
+      }
+    } else {
+      const res = await addStudent(formData);
+      if (res.status == 422) {
+        showToast(res.data.message);
+      }
+      if (res.student) {
+        showToast("Thêm thành công");
+        setReload((reload) => !reload);
+      }
     }
-    if(res.student){
-      showToast("Thêm thành công")
-      setReload(reload=>!reload)
-    }
-  }
+    idStudent.current = null;
+  };
 
   return (
     <div className="border shadow rounded relative ">
       <IoMdAdd
         className="absolute top-0 right-0 text-[20px] cursor-pointer"
         style={{ transform: "translate(calc(-12px),calc(-100% - 4px))" }}
-        onClick={()=>setOpenAdd(true)}
+        onClick={() => setOpenAdd(true)}
       />
       <Table
         totalPages={Math.ceil(Number(total / 10))}
@@ -109,8 +130,15 @@ function ManageStudent() {
         onClose={handleClose}
         onConfirm={handleConfirm}
       />
-      
-      {openAdd && (<ModalForm open={openAdd} onClose={()=>setOpenAdd(false)} onAddStudent={handleAddStudent}/>)}
+
+      {openAdd && (
+        <ModalForm
+          open={openAdd}
+          onClose={() => setOpenAdd(false)}
+          onAddStudent={handleAddStudent}
+          idStudent={idStudent.current}
+        />
+      )}
     </div>
   );
 }

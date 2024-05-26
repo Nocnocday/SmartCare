@@ -1,51 +1,65 @@
-import React, { useLayoutEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useLayoutEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import Header from "./header";
 import Sidebar from "./sidebar";
+import { getClassrooms } from "../../services/classroomServices";
+import { addClassrooms } from "../../redux/action";
 
 const withLayout = (WrappedComponent, heading, type, fnHeader) => {
   return function LayoutComponent(props) {
     const account = useSelector((state) => state.account);
     const navigate = useNavigate();
     const location = useLocation();
+    const dispatch= useDispatch()
 
     useLayoutEffect(() => {
       if (!account?.role) {
         navigate("/");
       }
     }, [account, navigate]);
+
+    useEffect(() => {
+      try {
+        (async () => {
+          const data = await getClassrooms();
+          if(data){
+            dispatch(addClassrooms(data))
+          }
+        })();
+      } catch (err) {}
+    });
     const handleGoBack = () => {
       navigate(-1); // Điều hướng về trang trước đó
     };
 
     const styles = {
       container: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100vh',
-        textAlign: 'center',
-        backgroundColor: '#f8f8f8',
-        padding: '20px',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+        textAlign: "center",
+        backgroundColor: "#f8f8f8",
+        padding: "20px",
       },
       title: {
-        fontSize: '2em',
-        marginBottom: '20px',
+        fontSize: "2em",
+        marginBottom: "20px",
       },
       message: {
-        fontSize: '1.2em',
-        marginBottom: '20px',
+        fontSize: "1.2em",
+        marginBottom: "20px",
       },
       button: {
-        padding: '10px 20px',
-        fontSize: '1em',
-        color: '#fff',
-        backgroundColor: '#007bff',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
+        padding: "10px 20px",
+        fontSize: "1em",
+        color: "#fff",
+        backgroundColor: "#007bff",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
       },
     };
 
@@ -69,10 +83,17 @@ const withLayout = (WrappedComponent, heading, type, fnHeader) => {
           </div>
         ) : (
           <div className="access-denied-container" style={styles.container}>
-          <h1 style={styles.title}>403 - Bạn không có quyền truy cập trang này</h1>
-          <p style={styles.message}>Xin lỗi, bạn không có quyền truy cập trang này. Vui lòng liên hệ với quản trị viên nếu bạn nghĩ rằng đây là một sự nhầm lẫn.</p>
-          <button onClick={handleGoBack} style={styles.button}>Quay lại</button>
-        </div>
+            <h1 style={styles.title}>
+              403 - Bạn không có quyền truy cập trang này
+            </h1>
+            <p style={styles.message}>
+              Xin lỗi, bạn không có quyền truy cập trang này. Vui lòng liên hệ
+              với quản trị viên nếu bạn nghĩ rằng đây là một sự nhầm lẫn.
+            </p>
+            <button onClick={handleGoBack} style={styles.button}>
+              Quay lại
+            </button>
+          </div>
         )}
       </>
     );

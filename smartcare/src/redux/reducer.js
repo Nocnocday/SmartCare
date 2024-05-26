@@ -1,13 +1,6 @@
-import { CLASSROOM } from "../utils/constants";
-
-// Khởi tạo danh sách classrooms từ CLASSROOM
-const classrooms = Object.entries(CLASSROOM).map(([key, value]) => ({
-  key,
-  value,
-}));
-
 const initialState = {
   account: {},
+  classrooms: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -16,6 +9,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         account: { ...action.payload },
+      };
+    case "CLASSROOM":
+      return {
+        ...state,
+        classrooms: [...action.payload],
       };
 
     default:

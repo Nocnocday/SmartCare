@@ -4,3 +4,9 @@ export const getAccount = (data)=>{
         payload:data
     }
 }
+export const addClassrooms = (data)=>{
+    return {
+        type:'CLASSROOM',
+        payload:data
+    }
+}

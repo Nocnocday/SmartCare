@@ -79,13 +79,13 @@ function ManageSchedule() {
                 ]?.map((item, index) => (
                   <div
                     key={index}
-                    className="border-t border-l h-[25%] text-center"
+                    className={`border-t border-l h-[25%] text-center`}
                     style={{
                       background: `${
                         moment().format("DD/MM/YYYY") ==
                         moment(schedule.date).format("DD/MM/YYYY")
                           ? "red"
-                          : "transparent"
+                          : index % 2 == 0 ? '#A2FF86' : ''
                       }`,
                     }}
                   >
@@ -106,7 +106,7 @@ function ManageSchedule() {
                         moment().format("DD/MM/YYYY") ==
                         moment(schedule.date).format("DD/MM/YYYY")
                           ? "red"
-                          : "transparent"
+                          : index % 2 == 0 ? '#A2FF86' : ''
                       }`,
                     }}
                   >
@@ -127,7 +127,7 @@ function ManageSchedule() {
                         moment().format("DD/MM/YYYY") ==
                         moment(schedule.date).format("DD/MM/YYYY")
                           ? "red"
-                          : "transparent"
+                          : index % 2 == 0 ? '#A2FF86' : ''
                       }`,
                     }}
                   >
@@ -146,7 +146,7 @@ function ManageSchedule() {
     );
 
   return (
-    <div className="shadow p-[12px] " ref={divRef}>
+    <div className="shadow p-[12px]" ref={divRef}>
       <ul className="flex justify-center items-center">
         <li>
           <span

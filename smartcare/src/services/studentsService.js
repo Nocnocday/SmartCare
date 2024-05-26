@@ -8,6 +8,16 @@ export const getStudents = async (page) => {
     return err;
   }
 };
+export const getStudent = async (id) => {
+  try {
+    const res = await http.get(`/students/${id}`);
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+
 
 export const removeStudent = async (id) => {
   try {
@@ -18,9 +28,18 @@ export const removeStudent = async (id) => {
   }
 };
 
-export const addStudent = async (data) => {
+export const addStudent = async (formData) => {
   try {
-    const res = await http.post(`/students`, data);
+    const res = await http.post(`/students`, formData);
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+export const updateStudent = async (formData,id) => {
+  try {
+    const res = await http.put(`/students/${id}`, formData);
     return res;
   } catch (err) {
     return err;
