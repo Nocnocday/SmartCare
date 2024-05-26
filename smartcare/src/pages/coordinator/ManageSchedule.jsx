@@ -56,8 +56,9 @@ function ManageSchedule() {
     mealSchedule?.length > 0 ? (
       mealSchedule.map((schedule) => {
         const scheduleMorning = schedule.morning?.split(",");
-        const scheduleAfternoon = schedule.afternoon.split(",");
         const scheduleNoon = schedule.noon?.split(",");
+        const scheduleAfternoon = schedule.afternoon.split(",");
+        
         return (
           <div key={schedule.id} className="flex-1 py-4">
             <div className="text-center mb-2 h-[60px]">
@@ -95,8 +96,8 @@ function ManageSchedule() {
               </div>
               <div className="h-[33%]">
                 {[
-                  ...scheduleAfternoon,
-                  ...Array(4 - scheduleAfternoon?.length).fill(""),
+                  ...scheduleNoon,
+                  ...Array(4 - scheduleNoon?.length).fill(""),
                 ]?.map((item, index) => (
                   <div
                     key={index}
@@ -116,8 +117,8 @@ function ManageSchedule() {
               </div>
               <div className="h-[33%]">
                 {[
-                  ...scheduleNoon,
-                  ...Array(4 - scheduleNoon?.length).fill(""),
+                  ...scheduleAfternoon,
+                  ...Array(4 - scheduleAfternoon?.length).fill(""),
                 ]?.map((item, index) => (
                   <div
                     key={index}
@@ -186,9 +187,9 @@ function ManageSchedule() {
                 Sáng
               </div>
               <div className="flex items-center h-[33%] font-semibold">
-                Chiều
+                Trưa 
               </div>
-              <div className="flex items-center h-[33%] font-semibold">Tối</div>
+              <div className="flex items-center h-[33%] font-semibold">Xế</div>
             </div>
           </div>
         )}
