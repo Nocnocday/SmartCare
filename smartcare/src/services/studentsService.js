@@ -39,7 +39,7 @@ export const addStudent = async (formData) => {
 
 export const updateStudent = async (formData,id) => {
   try {
-    const res = await http.put(`/students/${id}`, formData);
+    const res = await http.post(`/students/${id}`, formData);
     return res;
   } catch (err) {
     return err;
