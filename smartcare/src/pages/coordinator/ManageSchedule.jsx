@@ -56,8 +56,9 @@ function ManageSchedule() {
     mealSchedule?.length > 0 ? (
       mealSchedule.map((schedule) => {
         const scheduleMorning = schedule.morning?.split(",");
-        const scheduleAfternoon = schedule.afternoon.split(",");
         const scheduleNoon = schedule.noon?.split(",");
+        const scheduleAfternoon = schedule.afternoon.split(",");
+        
         return (
           <div key={schedule.id} className="flex-1 py-4">
             <div className="text-center mb-2 h-[60px]">
@@ -84,29 +85,8 @@ function ManageSchedule() {
                       background: `${
                         moment().format("DD/MM/YYYY") ==
                         moment(schedule.date).format("DD/MM/YYYY")
-                          ? "red"
-                          : index % 2 == 0 ? '#A2FF86' : ''
-                      }`,
-                    }}
-                  >
-                    {index === 0 ? item : <>{item}</>}
-                  </div>
-                ))}
-              </div>
-              <div className="h-[33%]">
-                {[
-                  ...scheduleAfternoon,
-                  ...Array(4 - scheduleAfternoon?.length).fill(""),
-                ]?.map((item, index) => (
-                  <div
-                    key={index}
-                    className="border-t border-l h-[25%] text-center"
-                    style={{
-                      background: `${
-                        moment().format("DD/MM/YYYY") ==
-                        moment(schedule.date).format("DD/MM/YYYY")
-                          ? "red"
-                          : index % 2 == 0 ? '#A2FF86' : ''
+                          ? "#FEFDF1"
+                          : index %2 ==0 ? '#F0EBE3' : ''
                       }`,
                     }}
                   >
@@ -126,8 +106,29 @@ function ManageSchedule() {
                       background: `${
                         moment().format("DD/MM/YYYY") ==
                         moment(schedule.date).format("DD/MM/YYYY")
-                          ? "red"
-                          : index % 2 == 0 ? '#A2FF86' : ''
+                          ? "#FEFDF1"
+                          : index %2==0 ? '#F0EBE3' : ''
+                      }`,
+                    }}
+                  >
+                    {index === 0 ? item : <>{item}</>}
+                  </div>
+                ))}
+              </div>
+              <div className="h-[33%]">
+                {[
+                  ...scheduleAfternoon,
+                  ...Array(4 - scheduleAfternoon?.length).fill(""),
+                ]?.map((item, index) => (
+                  <div
+                    key={index}
+                    className="border-t border-l h-[25%] text-center"
+                    style={{
+                      background: `${
+                        moment().format("DD/MM/YYYY") ==
+                        moment(schedule.date).format("DD/MM/YYYY")
+                          ? "#FEFDF1"
+                          : index % 2 == 0 ? '#F0EBE3' : ''
                       }`,
                     }}
                   >
@@ -186,9 +187,9 @@ function ManageSchedule() {
                 Sáng
               </div>
               <div className="flex items-center h-[33%] font-semibold">
-                Chiều
+                Trưa 
               </div>
-              <div className="flex items-center h-[33%] font-semibold">Tối</div>
+              <div className="flex items-center h-[33%] font-semibold">Xế</div>
             </div>
           </div>
         )}
