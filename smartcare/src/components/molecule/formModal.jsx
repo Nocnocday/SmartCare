@@ -14,7 +14,6 @@ const ModalForm = ({ open, onClose, onAddStudent, idStudent }) => {
   const [districts, setDistricts] = useState([]);
   const [wards, setWards] = useState([]);
   const [photoPreview, setPhotoPreview] = useState("");
-  // Call tỉnh thành phố lúc vào trang
   useLayoutEffect(() => {
     try {
       (async () => {
@@ -235,8 +234,6 @@ const ModalForm = ({ open, onClose, onAddStudent, idStudent }) => {
                 placeholder="Họ và tên"
                 id="name"
                 name="name"
-                // value={student.name}
-                onChange={handleChange}
                 className="outline-none p-[8px] border border-sidebar w-[100%] h-[40px] rounded mt-[8px]"
               />
             </div>
@@ -342,8 +339,6 @@ const ModalForm = ({ open, onClose, onAddStudent, idStudent }) => {
                 placeholder="Tên đăng nhập"
                 id="username"
                 name="username"
-                // value={student.name}
-                onChange={handleChange}
                 className="outline-none p-[8px] border border-sidebar w-[100%] h-[40px] rounded mt-[8px]"
               />
             </div>
