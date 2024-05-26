@@ -35,7 +35,7 @@ function Login() {
       submit.style.background = "#ccc";
       const res = await login(body);
       if (res.status == 401) {
-        showToast(res.data.message);
+        showToast("Username hoặc password sai");
       }
       else if(res.status == "ERR_NETWORK"){
         showToast("Lỗi kết nối...");

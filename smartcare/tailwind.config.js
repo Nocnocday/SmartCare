@@ -9,8 +9,8 @@ export default {
         sidebara: "#d3e4cd",
         primaryColor: "#000",
         secondColor: "#fff",
-        paidColor:"#2fa64d",
-        dueColor:"#db3447"
+        paidColor:"#A2FF86",
+        dueColor:"#FFA27F"
       },
       boxShadow: {
         c: "0 0px 100px 40px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",

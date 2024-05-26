@@ -36,7 +36,7 @@ function CreateAccount() {
                 { key: "0", value: "Admin" },
                 { key: "1", value: "Điều hướng viên" },
                 { key: "2", value: "Giáo viên" },
-                { key: "3", value: "Học sinh" },
+              
               ]}
             />
           </div>
@@ -52,26 +52,8 @@ function CreateAccount() {
               ]}
             />
           </div>
-          <div className="mb-[20px] w-[25%] px-[8px]">
-            <label htmlFor="fullnameDad" className="font-bold">
-              Họ tên bố <span className="required">*</span>
-            </label>
-            <Input
-              placeholder="Họ tên bố"
-              id="fullnameDad"
-              className="outline-none p-[8px] border border-sidebar w-[100%] h-[40px] rounded mt-[8px]"
-            />
-          </div>
-          <div className="mb-[20px] w-[25%] px-[8px]">
-            <label htmlFor="fullnameMom" className="font-bold">
-              Họ tên mẹ <span className="required">*</span>
-            </label>
-            <Input
-              placeholder="Họ tên mẹ"
-              id="fullnameMom"
-              className="outline-none p-[8px] border border-sidebar w-[100%] h-[40px] rounded mt-[8px]"
-            />
-          </div>
+         
+          
           <div className="mb-[20px] w-[25%] px-[8px]">
             <label htmlFor="birthday" className="font-bold">
               Ngày sinh <span className="required">*</span>
