@@ -71,8 +71,8 @@ function Login() {
         </h5>
         <div className="m-auto">
           <div className="text-left mb-[32px]">
-            <label htmlFor="email" className="block mb-[8px]">
-              Email:
+            <label htmlFor="username" className="block mb-[8px]">
+              Username:
             </label>
             <Input
               onBlur={(e) => {

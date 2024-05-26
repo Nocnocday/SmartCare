@@ -114,9 +114,9 @@ const ModalForm = ({ open, onClose, onAddStudent, idStudent }) => {
         console.log(input);
         if (!input.value) {
           isValid = false;
-          input.classList.add("required");
+          input.classList.add("border-red-500");
         } else {
-          input.classList.remove("required");
+          input.classList.add("border-red-500");
         }
       }
     });
@@ -126,6 +126,7 @@ const ModalForm = ({ open, onClose, onAddStudent, idStudent }) => {
     } else {
       labelRef.current.classList.remove("required");
     }
+
     return isValid;
   };
 

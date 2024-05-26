@@ -14,14 +14,14 @@ export const colummns = [
       align: "center",
     },
      {
-      name: "Amount",
+      name: "Tổng tiền",
       value: "amount",
       width: "200px",
       action: false,
       align: "center",
     },
     {
-      name: "Status",
+      name: "Trạng thái",
       value: "status",
       width: "100px",
       action: false,
@@ -36,7 +36,7 @@ export const colummns = [
       align: "left",
     },
     {
-      name: "Date",
+      name: "Ngày nộp",
       value:'date',
       width: "150px",
       action: true,
