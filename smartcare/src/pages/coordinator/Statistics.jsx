@@ -97,21 +97,21 @@ function Stats() {
     
       <div className="shadow p-[12px] mt-[20px]">
         <div className="inline-flex justify-between items-center shadow py-[8px] px-[16px] mx-[32px]">
-          <FaUser className="inline-block mr-[32px] text-[24px]" />
+          <FaUser className="inline-block mr-[32px] text-[32px] mx-[8px]" />
           <div className="text-center inline-block">
             <p>Chưa thanh toán</p>
             <span>10000000</span>
           </div>
         </div>
         <div className="inline-flex justify-between items-center shadow py-[8px] px-[16px] mx-[32px]">
-          <FaUser className="inline-block mr-[32px] text-[24px]" />
+          <FaUser className="inline-block mr-[32px] text-[32px] mx-[8px]" />
           <div className="text-center inline-block">
             <p>Đã thanh toán</p>
             <span>5000000</span>
           </div>
         </div>
         <div className="inline-flex justify-between items-center shadow py-[8px] px-[16px] mx-[32px]">
-          <FaUser className="inline-block mr-[32px] text-[24px]" />
+          <FaUser className="inline-block mr-[32px] text-[32px] mx-[8px]" />
           <div className="text-center inline-block">
             <p>Tổng tiền</p>
             <span>15000000</span>

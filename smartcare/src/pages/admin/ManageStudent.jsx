@@ -11,12 +11,13 @@ import {
   removeStudent,
   updateStudent,
 } from "../../services/studentsService";
-import { CLASSROOM } from "../../utils/constants";
 import { IoMdAdd } from "react-icons/io";
 import { showToast } from "../../utils/utils";
 import { colummns } from "./constants";
+import { useSelector } from "react-redux";
 
 function ManageStudent() {
+  const CLASSROOM = useSelector((state) => state.classrooms);
   const [datas, setDatas] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [total, setTotal] = useState(0);
@@ -25,6 +26,10 @@ function ManageStudent() {
   const [openAdd, setOpenAdd] = useState(false);
 
   const idStudent = useRef(null);
+  const listClassroom = {}
+  CLASSROOM.forEach(classroom => {
+    listClassroom[classroom.id] = classroom.name
+  });
   useLayoutEffect(() => {
     try {
       (async () => {
@@ -32,12 +37,13 @@ function ManageStudent() {
         if (res?.data) {
           const newData = res?.data?.map((student) => {
             const { parent, ...rest } = student;
+            console.log(student.classroom_id);
             return {
               ...rest,
               gender: student.gender == 0 ? "Nam" : "Nữ",
               parentId: parent.id,
               parent: parent.name,
-              classroom: CLASSROOM[student.classroom_id],
+              classroom: listClassroom[student.classroom_id],
             };
           });
           setDatas(newData);

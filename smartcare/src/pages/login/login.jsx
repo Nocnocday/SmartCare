@@ -104,7 +104,7 @@ function Login() {
             />
           </div>
           <div className="flex inline-block items-center mt-[16px] items-end">
-            <Link className="flex-1 text-right  text-sidebar">
+            <Link to={'/forgot-password'} className="flex-1 text-right  text-sidebar">
               Forgot password?
             </Link>
           </div>
