@@ -125,6 +125,7 @@ const ModalForm = ({ open, onClose, onAddStudent, idStudent }) => {
     } else {
       labelRef.current.classList.remove("required");
     }
+
     return isValid;
   };
 
