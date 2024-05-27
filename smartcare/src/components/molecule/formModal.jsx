@@ -85,7 +85,6 @@ const ModalForm = ({ open, onClose, onAddStudent, idStudent }) => {
 
   const labelRef = useRef();
   if (!open) return null;
-  const handleChange = (e) => {};
 
   const validateForm = () => {
     let isValid = true;

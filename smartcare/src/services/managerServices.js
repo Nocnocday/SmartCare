@@ -17,3 +17,29 @@ export const getManagers = async (page) => {
     return err;
   }
 };
+export const getManager = async (id) => {
+  try {
+    const res = await http.get(`/managers/${id}`);
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+export const removeManager = async (id) => {
+  try {
+    const res = await http.delete(`/managers/${id}`);
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+export const updateManager = async (formData,id) => {
+  try {
+    const res = await http.post(`/managers/${id}`, formData);
+    return res;
+  } catch (err) {
+    return err;
+  }
+};

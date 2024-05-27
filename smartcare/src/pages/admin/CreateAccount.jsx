@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Button, Input } from "../../components/atoms";
 import Select from "../../components/atoms/select";
 import withLayout from "../../components/layouts";
@@ -7,11 +7,18 @@ import {
   getProvinces,
   getWards,
 } from "../../services/locationServices";
-import { addAccount } from "../../services/managerServices";
+import {
+  addAccount,
+  getManager,
+  updateManager,
+} from "../../services/managerServices";
 import { showToast } from "../../utils/utils";
-
+import { useLocation } from "react-router-dom";
 
 function CreateAccount() {
+  const location = useLocation();
+  const { id } = location.state || {};
+
   const ROLES = [
     { key: 1, value: "admin" },
     { key: 2, value: "teacher" },
@@ -21,6 +28,7 @@ function CreateAccount() {
   const [districts, setDistricts] = useState([]);
   const [wards, setWards] = useState([]);
   const [photoPreview, setPhotoPreview] = useState("");
+  const [dataManager, setDataManager] = useState([]);
   const labelRef = useRef();
 
   useLayoutEffect(() => {
@@ -54,6 +62,46 @@ function CreateAccount() {
     } catch (err) {}
   }, []);
 
+  useEffect(() => {
+    const fields = Object.keys(dataManager);
+    fields.forEach((field) => {
+      const element = document.getElementById(field);
+      if (element) {
+        element.value = dataManager[field];
+      }
+    });
+  }, [dataManager]);
+  useLayoutEffect(() => {
+    if (!id) return;
+    (async () => {
+      const res = await getManager(id);
+      console.log(res);
+      const dataManager = {
+        ...res,
+      };
+      delete dataManager.profile_image;
+      setDataManager(dataManager);
+
+      const resDistricts = await getDistricts(dataManager.province_id);
+      if (resDistricts && resDistricts.length > 0) {
+        const districts = resDistricts.map((district) => ({
+          key: district.id,
+          value: district.name,
+        }));
+        setDistricts(districts);
+        const resWards = await getWards(dataManager.district_id);
+        if (resWards && resWards.length > 0) {
+          const wards = resWards.map((ward) => ({
+            key: ward.id,
+            value: ward.name,
+          }));
+          setWards(wards);
+        }
+      }
+      setPhotoPreview(res.profile_image);
+    })();
+  }, []);
+
   const validateForm = () => {
     let isValid = true;
     const requiredFields = [
@@ -68,15 +116,19 @@ function CreateAccount() {
       "district_id",
       "ward_id",
       "address",
-      "roles"
+      "roles",
     ];
     requiredFields.forEach((field) => {
-      const input = document.getElementById(field);
-      if (!input.value) {
-        isValid = false;
-        input.classList.add("border-red-500");
+      console.log(field);
+      if (id && (field == "password" || field == "roles")) {
       } else {
-        input.classList.remove("border-red-500");
+        const input = document.getElementById(field);
+        if (!input.value) {
+          isValid = false;
+          input.classList.add("border-red-500");
+        } else {
+          input.classList.remove("border-red-500");
+        }
       }
     });
     if (photoPreview == "") {
@@ -88,16 +140,37 @@ function CreateAccount() {
     return isValid;
   };
 
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
       let formData = new FormData(e.target);
-      const res = await addAccount(formData)
-      console.log(res);
-      if(res.status == 422){
-        showToast(res.data?.errors?.message)
-      }
+      const roles = [];
+      formData.forEach((value, key) => {
+        if (key == "roles") {
+          roles.push(value);
+        }
+      });
+      formData.delete("roles");
 
+      // Thêm mảng roles vào formData dưới dạng array
+      roles.forEach((role, index) => {
+        formData.append(`roles[${index}]`, role);
+      });
+      if (id) {
+        const res = await updateManager(formData, id);
+        if (res.status == 422) {
+          showToast(res.data?.message);
+        } else {
+          showToast("Cập nhật thành công");
+        }
+      } else {
+        const res = await addAccount(formData);
+        if (res.status == 422) {
+          showToast(res.data?.errors?.message);
+        } else {
+          showToast("Tài khoản thêm thành công");
+        }
+      }
     }
   };
 
@@ -193,17 +266,31 @@ function CreateAccount() {
           </div>
         </div>
         <div className="mb-[20px] px-[8px] w-[100%] flex">
-          <div className="w-[34%] px-[8px]">
-            <label className="font-bold">
-              Vai trò <span className="required">*</span>
-            </label>
-            <Select
-              name="roles"
-              id="roles"
-              classSelect="w-[100%] mt-[8px] h-[40px]"
-              datas={ROLES}
-            />
-          </div>
+          {id ? (
+            <div className="w-[34%] px-[8px]">
+              <label htmlFor="username" className="font-bold">
+                Tên đăng nhập <span className="required">*</span>
+              </label>
+              <Input
+                placeholder="Tên đăng nhập"
+                id="username"
+                name="username"
+                className="outline-none p-[8px] border border-sidebar w-[100%] h-[40px] rounded mt-[8px]"
+              />
+            </div>
+          ) : (
+            <div className="w-[34%] px-[8px]">
+              <label className="font-bold">
+                Vai trò <span className="required">*</span>
+              </label>
+              <Select
+                name="roles"
+                id="roles"
+                classSelect="w-[100%] mt-[8px] h-[40px]"
+                datas={ROLES}
+              />
+            </div>
+          )}
           <div className="w-[34%] px-[8px]">
             <label htmlFor="join_date" className="font-bold">
               Số điện thoại <span className="required">*</span>
@@ -228,33 +315,35 @@ function CreateAccount() {
             />
           </div>
         </div>
-
-        <div className="mb-[20px] px-[8px] w-[100%] flex">
-          <div className="w-[50%] px-[8px]">
-            <label htmlFor="username" className="font-bold">
-              Tên đăng nhập <span className="required">*</span>
-            </label>
-            <Input
-              placeholder="Tên đăng nhập"
-              id="username"
-              name="username"
-              className="outline-none p-[8px] border border-sidebar w-[100%] h-[40px] rounded mt-[8px]"
-            />
+        {id ? (
+          <></>
+        ) : (
+          <div className="mb-[20px] px-[8px] w-[100%] flex">
+            <div className="w-[50%] px-[8px]">
+              <label htmlFor="username" className="font-bold">
+                Tên đăng nhập <span className="required">*</span>
+              </label>
+              <Input
+                placeholder="Tên đăng nhập"
+                id="username"
+                name="username"
+                className="outline-none p-[8px] border border-sidebar w-[100%] h-[40px] rounded mt-[8px]"
+              />
+            </div>
+            <div className="w-[50%] px-[8px]">
+              <label htmlFor="password" className="font-bold">
+                Mật khẩu <span className="required">*</span>
+              </label>
+              <Input
+                type={"password"}
+                placeholder="password"
+                name="password"
+                id="password"
+                className="outline-none p-[8px] border border-sidebar w-[100%] h-[40px] rounded mt-[8px]"
+              />
+            </div>
           </div>
-
-          <div className="w-[50%] px-[8px]">
-            <label htmlFor="password" className="font-bold">
-              Mật khẩu <span className="required">*</span>
-            </label>
-            <Input
-              type={"password"}
-              placeholder="password"
-              name="password"
-              id="password"
-              className="outline-none p-[8px] border border-sidebar w-[100%] h-[40px] rounded mt-[8px]"
-            />
-          </div>
-        </div>
+        )}
         <div className="mb-[20px] px-[8px] w-[100%] flex">
           <div className="w-[30%] px-[8px]">
             <label htmlFor="province_id" className="font-bold">
@@ -330,7 +419,7 @@ function CreateAccount() {
         </div>
         <div className="flex justify-center">
           <Button style={{ display: "block", margin: "auto" }}>
-            Tạo tài khoản
+            {id ? "Cập nhật tài khoản" : "Tạo tài khoản"}
           </Button>
         </div>
       </form>

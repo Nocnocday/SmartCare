@@ -1,12 +1,16 @@
-import { HiUserGroup } from "react-icons/hi2";
 import withLayout from "../../components/layouts";
-import { IoIosLogOut } from "react-icons/io";
+import { CiEdit } from "react-icons/ci";
+import { FaRegTrashAlt } from "react-icons/fa";
 import Table from "../../components/atoms/table";
 import { colummnsAccount } from "./constants";
-import { useLayoutEffect, useState } from "react";
-import { getManagers } from "../../services/managerServices";
+import { useLayoutEffect, useRef, useState } from "react";
+import { getManagers, removeManager } from "../../services/managerServices";
+import ConfirmModal from "../../components/molecule/comfirmModal";
+import { showToast } from "../../utils/utils";
+import {  useNavigate } from "react-router-dom";
 
 function ManageTeacher() {
+  const navigate = useNavigate();
   const [datas, setDatas] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [total, setTotal] = useState(0);
@@ -22,7 +26,7 @@ function ManageTeacher() {
             return {
               ...rest,
               gender: student.gender == 0 ? "Nam" : "Nữ",
-              role:roles?.[0]?.name
+              role: roles?.[0]?.name,
             };
           });
           setDatas(newData);
@@ -32,22 +36,44 @@ function ManageTeacher() {
       })();
     } catch (err) {}
   }, [currentPage, total, reload]);
+
+  const idManager = useRef(null);
   const columnAction = [
     {
-      icon: HiUserGroup,
+      icon: CiEdit,
       classIc: "cursor-pointer text-[#05b64c] inline-block",
-      handleClick: () => {},
+      handleClick: (id) => {
+        navigate('/admin/create-account', { state: { id } })
+      },
     },
     {
-      icon: IoIosLogOut,
+      icon: FaRegTrashAlt,
       classIc: "cursor-pointer text-[#ff5050] inline-block",
-      handleClick: () => {
-        console.log("abcd");
+      handleClick: (id) => {
+        setOpen(true);
+        idManager.current = id;
       },
     },
   ];
   const onPageChange = (page) => {
     setCurrentPage(page);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    idManager.current = null;
+  };
+
+  const handleConfirm = async () => {
+    const res = await removeManager(idManager.current);
+    if (res.status == 404) {
+      showToast("Học sinh không tồn tại!");
+    } else {
+      showToast("Xóa thành công");
+      setReload((reload) => !reload);
+    }
+    idManager.current = null;
+    setOpen(false);
   };
   return (
     <>
@@ -57,6 +83,11 @@ function ManageTeacher() {
         datas={datas}
         columnAction={columnAction}
         onPageChange={onPageChange}
+      />
+      <ConfirmModal
+        open={open}
+        onClose={handleClose}
+        onConfirm={handleConfirm}
       />
     </>
   );
