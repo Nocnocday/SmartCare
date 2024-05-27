@@ -21,7 +21,7 @@ export const categoriesAdmin = [
         path:pathAdmin.CREATE_ACCOUNT,
     },
     {
-        name: "Quản lý giáo viên",
+        name: "Quản lý tài khoản",
         icon:HiUserGroup,
         path:pathAdmin.MANAGE_TEACHER,
     },

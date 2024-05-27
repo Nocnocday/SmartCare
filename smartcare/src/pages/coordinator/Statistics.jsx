@@ -21,7 +21,7 @@ function Stats() {
       dataLabels: {
         enabled: false,
       },
-      labels: ["Lớp mầm", "Lớp lá", "Lớp lớn"],
+      labels: ["Lớp bé", "Lớp nhỡ", "Lớp lớn"],
       colors: ["#DA9F0A", "#EA8484", "#8D31E9"],
       legend: {
         show: true,
@@ -42,12 +42,12 @@ function Stats() {
     height: 280,
     series: [
       {
-        name: "Total collections",
+        name: "Tổng tiền",
         data: [1500, 1418, 1456, 1526, 1356, 1256, 2800],
         color: "#1A56DB",
       },
       {
-        name: "Fees collection",
+        name: "Tổng phí",
         data: [643, 413, 765, 412, 1423, 1731, 2200],
         color: "#7E3BF2",
       },
@@ -124,7 +124,7 @@ function Stats() {
           </div>
           <div className="w-[50%]">
             <div className="mb-[20px]">
-              <h6>Earning</h6>
+              <h6>Thu được</h6>
             </div>
             <Chart {...chartConfig2} />
           </div>

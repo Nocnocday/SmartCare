@@ -4,7 +4,7 @@ export const pathAdmin = {
     CREATE_ACCOUNT: "/admin/create-account",
     INFO_ACCOUNT: "/admin/information-account",
     MANAGE_STUDENT: "/admin/manage-student",
-    MANAGE_TEACHER: "/admin/manage-teacher",
+    MANAGE_TEACHER: "/admin/manage-account",
     STATISTICS: "/admin/dashboard",
     STUDENTDETAIL: "studentdetail",
     STUDENTDETAIL_UID: "studentdetail/:uid",

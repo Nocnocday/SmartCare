@@ -124,7 +124,14 @@ const ModalForm = ({ open, onClose, onAddStudent, idStudent }) => {
     } else {
       labelRef.current.classList.remove("required");
     }
-
+    const phoneRegex = /^0[0-9]{9}$/;
+    if (!phoneRegex.test(document.querySelector("#phone_number")?.value)) {
+      isValid = false;
+      document.querySelector("#phone_number").classList.add("border-red-500");
+      showToast("Số điện thoại bắt đầu là 0 và có 10 số")
+    } else {
+      document.querySelector("#phone_number").classList.remove("border-red-500");
+    }
     return isValid;
   };
 
@@ -467,7 +474,7 @@ const ModalForm = ({ open, onClose, onAddStudent, idStudent }) => {
             </button>
             <button
               type="submit"
-              className="bg-blue-500 text-white px-4 py-2 rounded"
+              className="bg-[#99a799] text-white px-4 py-2 rounded"
             >
               Thêm
             </button>

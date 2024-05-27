@@ -137,6 +137,14 @@ function CreateAccount() {
     } else {
       labelRef.current.classList.remove("required");
     }
+    const phoneRegex = /^0[0-9]{9}$/;
+    if (!phoneRegex.test(document.querySelector("#phone_number")?.value)) {
+      isValid = false;
+      document.querySelector("#phone_number").classList.add("border-red-500");
+      showToast("Số điện thoại bắt đầu là 0 và có 10 số")
+    } else {
+      document.querySelector("#phone_number").classList.remove("border-red-500");
+    }
     return isValid;
   };
 
@@ -166,7 +174,7 @@ function CreateAccount() {
       } else {
         const res = await addAccount(formData);
         if (res.status == 422) {
-          showToast(res.data?.errors?.message);
+          showToast(res.data?.message);
         } else {
           showToast("Tài khoản thêm thành công");
         }

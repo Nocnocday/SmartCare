@@ -9,15 +9,7 @@ function Header({heading,type,fnHeader}) {
       {type === 1 && (
         <div className="flex justify-between px-[16px]">
           <h1 className="my-[0px] text-[40px]" id="title-page">{heading}</h1>
-          <div className="flex flex-col mt-[10px]">
-            <Input
-              type="text"
-              classInput="w-[300px]"
-              placeholder="Nhập nội dung tìm kiếm"
-            />
-            {/* <Button handleClick={fnHeader?.[0]}>Tạo tài khoản</Button> */}
-            <div className="h-[20px]"></div>
-          </div>
+          
         </div>
       )}
       {type === 2 && (
@@ -36,10 +28,7 @@ function Header({heading,type,fnHeader}) {
           </div>
           <div className="flex justify-between items-end">
             <h6 className="text-[#D3E4CD]">Thông tin cá nhân</h6>
-            <div>
-              <Button classButton="mx-[6px]" handleClick={fnHeader?.[0]}>Chỉnh sửa</Button>
-              <Button classButton="mx-[6px]" handleClick={fnHeader?.[1]}>Xóa</Button>
-            </div>
+            
           </div>
         </>
       )}
