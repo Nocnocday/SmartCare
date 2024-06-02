@@ -16,6 +16,7 @@ class HttpClient {
             const response = await axios.post(url, data,config);
             return response;
         } catch (error) {
+            console.log(error);
             throw error;
         }
     }
@@ -32,7 +33,7 @@ class HttpClient {
     async delete(url) {
         try {
             const response = await axios.delete(url);
-            return response.data;
+            return response;
         } catch (error) {
             throw error;
         }

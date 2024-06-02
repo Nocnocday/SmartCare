@@ -1,6 +1,7 @@
 import Chart from "react-apexcharts";
 import { FaUser } from "react-icons/fa";
 import Layout from "../../components/layouts";
+import withLayout from "../../components/layouts";
 
 function Stats() {
   const chartConfig1 = {
@@ -20,7 +21,7 @@ function Stats() {
       dataLabels: {
         enabled: false,
       },
-      labels: ["Lớp mầm", "Lớp lá", "Lớp lớn"],
+      labels: ["Lớp bé", "Lớp nhỡ", "Lớp lớn"],
       colors: ["#DA9F0A", "#EA8484", "#8D31E9"],
       legend: {
         show: true,
@@ -41,12 +42,12 @@ function Stats() {
     height: 280,
     series: [
       {
-        name: "Total collections",
+        name: "Tổng tiền",
         data: [1500, 1418, 1456, 1526, 1356, 1256, 2800],
         color: "#1A56DB",
       },
       {
-        name: "Fees collection",
+        name: "Tổng phí",
         data: [643, 413, 765, 412, 1423, 1731, 2200],
         color: "#7E3BF2",
       },
@@ -93,27 +94,27 @@ function Stats() {
     },
   };
   return (
-    <Layout heading={"Thống kê"} type={2}>
-      <div className="shadow p-[12px] mt-[20px]">
-        <div className="inline-flex justify-between items-center shadow py-[8px] px-[16px] mx-[32px]">
-          <FaUser className="inline-block mr-[32px] text-[24px]" />
+    
+      <div className="shadow p-[12px] mt-[20px] border">
+        <div className="inline-flex w-[250px] justify-between items-center shadow py-[8px] px-[16px] mx-[32px]">
+          <FaUser className="inline-block mr-[32px] text-[32px] mx-[8px]" />
           <div className="text-center inline-block">
             <p>Chưa thanh toán</p>
-            <span>10000000</span>
+            <span>{Number(10000000).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
           </div>
         </div>
-        <div className="inline-flex justify-between items-center shadow py-[8px] px-[16px] mx-[32px]">
-          <FaUser className="inline-block mr-[32px] text-[24px]" />
+        <div className="inline-flex w-[250px] justify-between items-center shadow py-[8px] px-[16px] mx-[32px]">
+          <FaUser className="inline-block mr-[32px] text-[32px] mx-[8px]" />
           <div className="text-center inline-block">
             <p>Đã thanh toán</p>
-            <span>5000000</span>
+            <span>{Number(20000000).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
           </div>
         </div>
-        <div className="inline-flex justify-between items-center shadow py-[8px] px-[16px] mx-[32px]">
-          <FaUser className="inline-block mr-[32px] text-[24px]" />
+        <div className="inline-flex w-[250px] justify-between items-center shadow py-[8px] px-[16px] mx-[32px]">
+          <FaUser className="inline-block mr-[32px] text-[32px] mx-[8px]" />
           <div className="text-center inline-block">
-            <p>Tổng tiền</p>
-            <span>15000000</span>
+            <p>Tổng</p>
+            <span>{Number(30000000).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
           </div>
         </div>
         <div className="flex mt-[40px]">
@@ -123,14 +124,14 @@ function Stats() {
           </div>
           <div className="w-[50%]">
             <div className="mb-[20px]">
-              <h6>Earning</h6>
+              <h6>Thu được</h6>
             </div>
             <Chart {...chartConfig2} />
           </div>
         </div>
       </div>
-    </Layout>
   );
 }
 
-export default Stats;
+export default withLayout(Stats, "Thống kê", 2, () => {});
+

@@ -1,90 +1,90 @@
-import React,{forwardRef} from "react";
-import { IoTrashOutline,IoPencil } from "react-icons/io5";
+import React from "react";
+import { IoPencil, IoTrashOutline } from "react-icons/io5";
 import Table from "../../components/atoms/table";
-import Layout from "../../components/layouts";
 
-import { colummns } from "./constants";
 import { Button, Input } from "../../components/atoms";
+import withLayout from "../../components/layouts";
+import { colummns } from "./constants";
 
 function ManageFee() {
   const datas = [
     {
       id: "123",
       name: "Nguyễn Văn A",
-      amount: "150$",
-      status: "Paid",
+      amount: "1500000 VNĐ",
+      status: "Chưa",
       date: "01-01-2022",
       email: "ABC@gmail.com",
     },
     {
       id: "123",
       name: "Nguyễn Văn A",
-      amount: "150$",
-      status: "Due",
+      amount: "1500000 VNĐ",
+      status: "Chưa",
       date: "01-01-2022",
       email: "ABC@gmail.com",
     },
     {
       id: "123",
       name: "Nguyễn Văn A",
-      amount: "150$",
-      status: "Paid",
+      amount: "1200000 VNĐ",
+      status: "Xong",
       date: "01-01-2022",
       email: "ABC@gmail.com",
     },
     {
       id: "123",
       name: "Nguyễn Văn A",
-      amount: "150$",
-      status: "Due",
+      amount: "1500000 VNĐ",
+      status: "Chưa",
       date: "01-01-2022",
       email: "ABC@gmail.com",
     },
     {
       id: "123",
       name: "Nguyễn Văn A",
-      amount: "150$",
-      status: "Paid",
+      amount: "1500000 VNĐ",
+      status: "Chưa",
       date: "01-01-2022",
       email: "ABC@gmail.com",
     },
     {
       id: "123",
       name: "Nguyễn Văn A",
-      amount: "150$",
-      status: "Due",
+      amount: "1200000 VNĐ",
+      status: "Xong",
       date: "01-01-2022",
       email: "ABC@gmail.com",
     },
     {
       id: "123",
       name: "Nguyễn Văn A",
-      amount: "150$",
-      status: "Paid",
+      amount: "1500000 VNĐ",
+      status: "Chưa",
       date: "01-01-2022",
       email: "ABC@gmail.com",
     },
     {
       id: "123",
       name: "Nguyễn Văn A",
-      amount: "150$",
-      status: "Due",
+      amount: "1500000 VNĐ",
+      status: "Chưa",
       date: "01-01-2022",
       email: "ABC@gmail.com",
     },
     {
       id: "123",
       name: "Nguyễn Văn A",
-      amount: "150$",
-      status: "Paid",
+      amount: "1200000 VNĐ",
+      status: "Xong",
       date: "01-01-2022",
       email: "ABC@gmail.com",
     },
     {
       id: "123",
       name: "Nguyễn Văn A",
-      amount: "150$",
-      status: "Paid",
+      amount: "1200000 VNĐ",
+      status: "Xong",
       date: "01-01-2022",
       email: "ABC@gmail.com",
     },
@@ -94,7 +94,6 @@ function ManageFee() {
       icon: IoPencil,
       classIc: "cursor-pointer text-[#05b64c] inline-block",
       handleClick: () => {
-        console.log("abcd");
       },
     },
     {
@@ -132,7 +131,6 @@ function ManageFee() {
     );
   };
   return (
-    <Layout heading={"Quản lý học phí"} type={2}>
       <Table
         styleTable={{ width: "100%" }}
         checkbox={true}
@@ -142,12 +140,12 @@ function ManageFee() {
         search={<HeaderTable />}
         renderCssCustom={(status) => {
           return `cursor-pointer p-[10px] rounded-[16px] ${
-            status == "Paid" ? "bg-paidColor" : "bg-dueColor"
+            status == "Xong" ? "bg-paidColor" : "bg-dueColor"
           }`;
         }}
       />
-    </Layout>
   );
 }
 
-export default ManageFee;
+export default withLayout(ManageFee, "Quản lý học phí", 2, () => {});
+

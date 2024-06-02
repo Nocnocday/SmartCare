@@ -9,12 +9,13 @@ const InputRead = ({
   classInput,
   classInputRead,
   value,
+  disable
 }) => {
   const classNameInput = `outline-none bg-[#fff] border-transparent p-2 flex-1 ${classInput}`;
   return (
     <div className={`flex justify-between items-center ${classInputRead}`}>
       {textLabel && <label className={`${classLabel}`}>{textLabel}</label>}
-      <input type={type} className={classNameInput} readOnly value={value}/>
+      <input type={type} className={classNameInput} readOnly={disable} value={value}/>
     </div>
   );
 };
@@ -26,6 +27,7 @@ InputRead.propTypes = {
   classInputRead: PropTypes.string,
   textLabel: PropTypes.string,
   value: PropTypes.string,
+  disable:PropTypes.bool
 };
 
 InputRead.defaultProps = {
@@ -34,6 +36,7 @@ InputRead.defaultProps = {
   classInput: "",
   classInputRead: "",
   value: "",
+  disable: true,
 };
 
 export default InputRead;

@@ -21,7 +21,7 @@ export const categoriesAdmin = [
         path:pathAdmin.CREATE_ACCOUNT,
     },
     {
-        name: "Quản lý giáo viên",
+        name: "Quản lý tài khoảns",
         icon:HiUserGroup,
         path:pathAdmin.MANAGE_TEACHER,
     },
@@ -36,7 +36,7 @@ export const categoriesAssisstant = [
     {
         name: "Thống kê",
         icon:GoHomeFill,
-        path:pathAdmin.STATISTICS,
+        path:pathAssisstant.STATISTICS,
     },
     {
         name: "Quản lý lịch ăn",

@@ -8,6 +8,8 @@ const Pagination = ({ totalPages, onPageChange }) => {
     onPageChange(page);
   }, [page]);
 
+  // console.log(totalPages);
+
   const pageNumbers = Array.from(
     { length: totalPages },
     (_, index) => index + 1

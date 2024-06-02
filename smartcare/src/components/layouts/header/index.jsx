@@ -2,21 +2,14 @@ import React from "react";
 import { Button, Input } from "../../atoms";
 import { useSelector } from "react-redux";
 
-function Header({heading,type}) {
+function Header({heading,type,fnHeader}) {
   const account = useSelector((state) => state.account)
   return (
     <>
       {type === 1 && (
         <div className="flex justify-between px-[16px]">
           <h1 className="my-[0px] text-[40px]" id="title-page">{heading}</h1>
-          <div className="flex flex-col mt-[20px]">
-            <Input
-              type="text"
-              classInput="w-[300px]"
-              placeholder="Nhập nội dung tìm kiếm"
-            />
-            <Button>Tạo tài khoản</Button>
-          </div>
+          
         </div>
       )}
       {type === 2 && (
@@ -35,10 +28,7 @@ function Header({heading,type}) {
           </div>
           <div className="flex justify-between items-end">
             <h6 className="text-[#D3E4CD]">Thông tin cá nhân</h6>
-            <div>
-              <Button classButton="mx-[6px]">Chỉnh sửa</Button>
-              <Button classButton="mx-[6px]">Xóa</Button>
-            </div>
+            
           </div>
         </>
       )}

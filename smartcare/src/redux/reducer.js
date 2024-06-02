@@ -1,14 +1,21 @@
 const initialState = {
   account: {},
+  classrooms: [],
 };
+
 const rootReducer = (state = initialState, action) => {
-  console.log("state", state);
   switch (action.type) {
     case "account":
       return {
         ...state,
         account: { ...action.payload },
       };
+    case "CLASSROOM":
+      return {
+        ...state,
+        classrooms: [...action.payload],
+      };
+
     default:
       return state;
   }

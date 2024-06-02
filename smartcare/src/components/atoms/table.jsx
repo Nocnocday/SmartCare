@@ -3,7 +3,7 @@ import Pagination from "./pagination";
 
 Table.defaultProps = {};
 function Table({
-  renderCssCustom,
+  renderCssCustom = () => {},
   checkbox,
   colummns,
   datas,
@@ -11,6 +11,8 @@ function Table({
   search,
   handlePaid,
   styleTable = {},
+  totalPages = 0,
+  onPageChange,
 }) {
   const tableRef = useRef();
   const [listChecked, setListChecked] = useState(new Array(10).fill(false));
@@ -31,7 +33,7 @@ function Table({
     <>
       <div
         ref={tableRef}
-        className="overflow-auto rounded-lg relative rounded-lg shadow bg-[#fafafa] custom-scrollbar"
+        className="overflow-auto relative rounded-lg shadow bg-[#fafafa] custom-scrollbar"
       >
         {search && search}
 
@@ -40,9 +42,12 @@ function Table({
           style={{ width: "max-content", ...styleTable }}
         >
           <thead>
-            <tr className="center" >
+            <tr className="center">
               {checkbox && (
-                <th className="py-2 px-3 sticky top-0  bg-[#fff]" align="center">
+                <th
+                  className="py-2 px-3 sticky top-0  bg-[#fff]"
+                  align="center"
+                >
                   <input
                     type="checkbox"
                     className="outline-none"
@@ -80,32 +85,35 @@ function Table({
                 let i = 0;
                 for (const item in data) {
                   if (Object.hasOwnProperty.call(data, item)) {
-                    listTd.push(
-                      <td className="py-2 px-3" align={colummns[i]?.align}>
-                        {colummns[i].type == "image" ? (
-                          <img
-                            src={data[colummns[i].value]}
-                            alt=""
-                            className="w-[60px] h-[60px]"
-                          />
-                        ) : (
-                          <>
-                            {colummns[i].customCss ? (
-                              <div
-                                className={renderCssCustom(
-                                  data[colummns[i].value]
-                                )}
-                                onClick={handlePaid}
-                              >
-                                {data[colummns[i].value]}
-                              </div>
-                            ) : (
-                              data[colummns[i].value]
-                            )}
-                          </>
-                        )}
-                      </td>
-                    );
+                    if (colummns[i]) {
+                      listTd.push(
+                        <td className="py-2 px-3" align={colummns[i]?.align}>
+                          {colummns[i]?.type == "image" ? (
+                            <img
+                              src={data[colummns[i]?.value]}
+                              alt=""
+                              className="w-[60px] h-[60px]"
+                            />
+                          ) : (
+                            <>
+                              {colummns[i]?.customCss ? (
+                                <div
+                                  className={renderCssCustom(
+                                    data[colummns[i]?.value]
+                                  )}
+                                  onClick={handlePaid}
+                                >
+                                  {data[colummns[i]?.value]}
+                                </div>
+                              ) : (
+                                data[colummns[i]?.value]
+                              )}
+                            </>
+                          )}
+                        </td>
+                      );
+                    }
+
                     i++;
                   }
                 }
@@ -116,11 +124,16 @@ function Table({
                         return (
                           <Icon
                             className={`mx-[5px] ${action.classIc}`}
-                            onClick={action.handleClick}
+                            onClick={() => {
+                              action.handleClick(data.id);
+                            }}
                           />
                         );
                       })
                     : [];
+
+                // console.log(i);
+
                 return (
                   <tr
                     key={data.id}
@@ -149,7 +162,7 @@ function Table({
         </table>
       </div>
       <div className="pt-[10px] pagination">
-        <Pagination totalPages={1} />
+        <Pagination totalPages={totalPages} onPageChange={onPageChange} />
       </div>
     </>
   );

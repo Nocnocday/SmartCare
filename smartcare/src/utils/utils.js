@@ -9,7 +9,6 @@ export const debounce = (func, delay) => {
 };
 
 export const formatDate = (date) => {
-  console.log(date);
   const day = moment(date).date();
   const month = moment(date).month() + 1; // Tháng bắt đầu từ 0 nên cần cộng thêm 1
   const year = moment(date).year();
@@ -59,4 +58,13 @@ export const getSevenDaysAhead = (date) => {
   const getDate = parseDateFromString(date);
   const sevenDaysAhead = moment(getDate).add(7, 'days').toDate(); // 7 ngày sau
   return sevenDaysAhead;
-};
+}
+
+export const showToast=(message)=> {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.className = 'toast show';
+  setTimeout(() => {
+    toast.className = toast.className.replace('show', '');
+  }, 3000);
+}
